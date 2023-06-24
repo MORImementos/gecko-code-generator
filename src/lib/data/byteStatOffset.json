@@ -1,0 +1,118 @@
+[
+  {
+    "statName": "Curve Ball Speed",
+    "statOffset": "0x0"
+  },
+  {
+    "statName": "Fast Ball Speed",
+    "statOffset": "0x1"
+  },
+  {
+    "statName": "Cursed Ball",
+    "statOffset": "0x2"
+  },
+  {
+    "statName": "Curve",
+    "statOffset": "0x3"
+  },
+  {
+    "statName": "Curve Control",
+    "statOffset": "0x4"
+  },
+  {
+    "statName": "Fielding Ability*",
+    "statOffset": "0x22"
+  },
+  {
+    "statName": "Fielding Ability*",
+    "statOffset": "0x23"
+  },
+  {
+    "statName": "Char Id",
+    "statOffset": "0x25"
+  },
+  {
+    "statName": "Fielding Arm",
+    "statOffset": "0x26"
+  },
+  {
+    "statName": "Batting Stance",
+    "statOffset": "0x27"
+  },
+  {
+    "statName": "Slap Contact Mult",
+    "statOffset": "0x28"
+  },
+  {
+    "statName": "Charge Contact Mult",
+    "statOffset": "0x29"
+  },
+  {
+    "statName": "Slap Power",
+    "statOffset": "0x2a"
+  },
+  {
+    "statName": "Charge Power",
+    "statOffset": "0x2b"
+  },
+  {
+    "statName": "Bunting",
+    "statOffset": "0x2c"
+  },
+  {
+    "statName": "Hit trajectory",
+    "statOffset": "0x2d"
+  },
+  {
+    "statName": "Hit trajectory",
+    "statOffset": "0x2e"
+  },
+  {
+    "statName": "Speed",
+    "statOffset": "0x2f"
+  },
+  {
+    "statName": "Throwing Arm",
+    "statOffset": "0x30"
+  },
+  {
+    "statName": "Character Class",
+    "statOffset": "0x31"
+  },
+  {
+    "statName": "Weight",
+    "statOffset": "0x32"
+  },
+  {
+    "statName": "Captain",
+    "statOffset": "0x33"
+  },
+  {
+    "statName": "Captain Stars",
+    "statOffset": "0x34"
+  },
+  {
+    "statName": "Star Swing",
+    "statOffset": "0x35"
+  },
+  {
+    "statName": "Star Pitch",
+    "statOffset": "0x36"
+  },
+  {
+    "statName": "Batting Stat Bar",
+    "statOffset": "0x37"
+  },
+  {
+    "statName": "Pitching Stat Bar",
+    "statOffset": "0x38"
+  },
+  {
+    "statName": "Running Stat Bar",
+    "statOffset": "0x39"
+  },
+  {
+    "statName": "Fielding Stat Bar",
+    "statOffset": "0x3a"
+  }
+]

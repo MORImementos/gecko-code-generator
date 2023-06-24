@@ -1,0 +1,326 @@
+[
+  {
+    "charName": "Mario",
+    "charHexId": "0x0",
+    "charBaseAddress": "0x8034e9a0",
+    "charId": 0
+  },
+  {
+    "charName": "Luigi",
+    "charHexId": "0x1",
+    "charBaseAddress": "0x8034ea40",
+    "charId": 1
+  },
+  {
+    "charName": "DK",
+    "charHexId": "0x2",
+    "charBaseAddress": "0x8034eae0",
+    "charId": 2
+  },
+  {
+    "charName": "Diddy",
+    "charHexId": "0x3",
+    "charBaseAddress": "0x8034eb80",
+    "charId": 3
+  },
+  {
+    "charName": "Peach",
+    "charHexId": "0x4",
+    "charBaseAddress": "0x8034ec20",
+    "charId": 4
+  },
+  {
+    "charName": "Daisy",
+    "charHexId": "0x5",
+    "charBaseAddress": "0x8034ecc0",
+    "charId": 5
+  },
+  {
+    "charName": "Yoshi",
+    "charHexId": "0x6",
+    "charBaseAddress": "0x8034ed60",
+    "charId": 6
+  },
+  {
+    "charName": "Baby  Mario",
+    "charHexId": "0x7",
+    "charBaseAddress": "0x8034ee00",
+    "charId": 7
+  },
+  {
+    "charName": "Baby  Luigi",
+    "charHexId": "0x8",
+    "charBaseAddress": "0x8034eea0",
+    "charId": 8
+  },
+  {
+    "charName": "Bowser",
+    "charHexId": "0x9",
+    "charBaseAddress": "0x8034ef40",
+    "charId": 9
+  },
+  {
+    "charName": "Wario",
+    "charHexId": "0xa",
+    "charBaseAddress": "0x8034efe0",
+    "charId": 10
+  },
+  {
+    "charName": "Waluigi",
+    "charHexId": "0xb",
+    "charBaseAddress": "0x8034f080",
+    "charId": 11
+  },
+  {
+    "charName": "Koopa(R)",
+    "charHexId": "0xc",
+    "charBaseAddress": "0x8034f120",
+    "charId": 12
+  },
+  {
+    "charName": "Toad(R)",
+    "charHexId": "0xd",
+    "charBaseAddress": "0x8034f1c0",
+    "charId": 13
+  },
+  {
+    "charName": "Boo",
+    "charHexId": "0xe",
+    "charBaseAddress": "0x8034f260",
+    "charId": 14
+  },
+  {
+    "charName": "Toadette",
+    "charHexId": "0xf",
+    "charBaseAddress": "0x8034f300",
+    "charId": 15
+  },
+  {
+    "charName": "Shy  Guy(R)",
+    "charHexId": "0x10",
+    "charBaseAddress": "0x8034f3a0",
+    "charId": 16
+  },
+  {
+    "charName": "Birdo",
+    "charHexId": "0x11",
+    "charBaseAddress": "0x8034f440",
+    "charId": 17
+  },
+  {
+    "charName": "Monty",
+    "charHexId": "0x12",
+    "charBaseAddress": "0x8034f4e0",
+    "charId": 18
+  },
+  {
+    "charName": "Bowser  Jr",
+    "charHexId": "0x13",
+    "charBaseAddress": "0x8034f580",
+    "charId": 19
+  },
+  {
+    "charName": "Paratroopa(R)",
+    "charHexId": "0x14",
+    "charBaseAddress": "0x8034f620",
+    "charId": 20
+  },
+  {
+    "charName": "Pianta(B)",
+    "charHexId": "0x15",
+    "charBaseAddress": "0x8034f6c0",
+    "charId": 21
+  },
+  {
+    "charName": "Pianta(R)",
+    "charHexId": "0x16",
+    "charBaseAddress": "0x8034f760",
+    "charId": 22
+  },
+  {
+    "charName": "Pianta(Y)",
+    "charHexId": "0x17",
+    "charBaseAddress": "0x8034f800",
+    "charId": 23
+  },
+  {
+    "charName": "Noki(B)",
+    "charHexId": "0x18",
+    "charBaseAddress": "0x8034f8a0",
+    "charId": 24
+  },
+  {
+    "charName": "Noki(R)",
+    "charHexId": "0x19",
+    "charBaseAddress": "0x8034f940",
+    "charId": 25
+  },
+  {
+    "charName": "Noki(G)",
+    "charHexId": "0x1a",
+    "charBaseAddress": "0x8034f9e0",
+    "charId": 26
+  },
+  {
+    "charName": "Bro(H)",
+    "charHexId": "0x1b",
+    "charBaseAddress": "0x8034fa80",
+    "charId": 27
+  },
+  {
+    "charName": "Toadsworth",
+    "charHexId": "0x1c",
+    "charBaseAddress": "0x8034fb20",
+    "charId": 28
+  },
+  {
+    "charName": "Toad(B)",
+    "charHexId": "0x1d",
+    "charBaseAddress": "0x8034fbc0",
+    "charId": 29
+  },
+  {
+    "charName": "Toad(Y)",
+    "charHexId": "0x1e",
+    "charBaseAddress": "0x8034fc60",
+    "charId": 30
+  },
+  {
+    "charName": "Toad(G)",
+    "charHexId": "0x1f",
+    "charBaseAddress": "0x8034fd00",
+    "charId": 31
+  },
+  {
+    "charName": "Toad(P)",
+    "charHexId": "0x20",
+    "charBaseAddress": "0x8034fda0",
+    "charId": 32
+  },
+  {
+    "charName": "Magikoopa(B)",
+    "charHexId": "0x21",
+    "charBaseAddress": "0x8034fe40",
+    "charId": 33
+  },
+  {
+    "charName": "Magikoopa(R)",
+    "charHexId": "0x22",
+    "charBaseAddress": "0x8034fee0",
+    "charId": 34
+  },
+  {
+    "charName": "Magikoopa(G)",
+    "charHexId": "0x23",
+    "charBaseAddress": "0x8034ff80",
+    "charId": 35
+  },
+  {
+    "charName": "Magikoopa(Y)",
+    "charHexId": "0x24",
+    "charBaseAddress": "0x80350020",
+    "charId": 36
+  },
+  {
+    "charName": "King  Boo",
+    "charHexId": "0x25",
+    "charBaseAddress": "0x803500c0",
+    "charId": 37
+  },
+  {
+    "charName": "Petey",
+    "charHexId": "0x26",
+    "charBaseAddress": "0x80350160",
+    "charId": 38
+  },
+  {
+    "charName": "Dixie",
+    "charHexId": "0x27",
+    "charBaseAddress": "0x80350200",
+    "charId": 39
+  },
+  {
+    "charName": "Goomba",
+    "charHexId": "0x28",
+    "charBaseAddress": "0x803502a0",
+    "charId": 40
+  },
+  {
+    "charName": "Paragoomba",
+    "charHexId": "0x29",
+    "charBaseAddress": "0x80350340",
+    "charId": 41
+  },
+  {
+    "charName": "Koopa(G)",
+    "charHexId": "0x2a",
+    "charBaseAddress": "0x803503e0",
+    "charId": 42
+  },
+  {
+    "charName": "Paratroopa(G)",
+    "charHexId": "0x2b",
+    "charBaseAddress": "0x80350480",
+    "charId": 43
+  },
+  {
+    "charName": "Shy Guy(B)",
+    "charHexId": "0x2c",
+    "charBaseAddress": "0x80350520",
+    "charId": 44
+  },
+  {
+    "charName": "Shy  Guy(Y)",
+    "charHexId": "0x2d",
+    "charBaseAddress": "0x803505c0",
+    "charId": 45
+  },
+  {
+    "charName": "Shy  Guy(G)",
+    "charHexId": "0x2e",
+    "charBaseAddress": "0x80350660",
+    "charId": 46
+  },
+  {
+    "charName": "Shy  Guy(Bk)",
+    "charHexId": "0x2f",
+    "charBaseAddress": "0x80350700",
+    "charId": 47
+  },
+  {
+    "charName": "Dry  Bones(Gy)",
+    "charHexId": "0x30",
+    "charBaseAddress": "0x803507a0",
+    "charId": 48
+  },
+  {
+    "charName": "Dry Bones(G)",
+    "charHexId": "0x31",
+    "charBaseAddress": "0x80350840",
+    "charId": 49
+  },
+  {
+    "charName": "Dry  Bones(R)",
+    "charHexId": "0x32",
+    "charBaseAddress": "0x803508e0",
+    "charId": 50
+  },
+  {
+    "charName": "Dry  Bones(B)",
+    "charHexId": "0x33",
+    "charBaseAddress": "0x80350980",
+    "charId": 51
+  },
+  {
+    "charName": "Bro(F)",
+    "charHexId": "0x34",
+    "charBaseAddress": "0x80350a20",
+    "charId": 52
+  },
+  {
+    "charName": "Bro(B)",
+    "charHexId": "0x35",
+    "charBaseAddress": "0x80350ac0",
+    "charId": 53
+  }
+]
