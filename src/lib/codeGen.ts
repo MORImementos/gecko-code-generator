@@ -60,6 +60,6 @@ export function modifyAddress(add: number, offset: number, codeType = "byte") {
 } else if (codeType === "float" || codeType === "word") {
   codePrefix = "04";
 }
-const modifiedAddress = (parseInt(add, 16) + offset).toString(16).replace(/^80/, codePrefix).toUpperCase();
+const modifiedAddress = (parseInt(String(add), 16) + offset).toString(16).replace(/^80/, codePrefix).toUpperCase();
 return modifiedAddress;
 }
