@@ -171,18 +171,18 @@
                 <td class="w-[20%]">
                 <!-- if array has not changed -->
                 {#if changedArray[rIndex + 2][cIndex + 2] !== true}
-                    {#if $generalWrite[0][cIndex + 2] === "Fielding Ability"}
-                        {$generalWrite[0][cIndex + 2]}
-                    {:else if $generalWrite[0][cIndex + 2] === "Captain Stars"}
+                    <!-- {#if $generalWrite[0][cIndex + 2] === "Fielding Ability"}
+                        {$generalWrite[0][cIndex + 2]} -->
+                    <!-- {:else if $generalWrite[0][cIndex + 2] === "Captain Stars"} -->
                         <!-- {charName($generalWrite[rIndex + 2][cIndex + 2])} -->
-                    {:else}
+                    <!-- {:else} -->
                         <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$generalWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $generalWrite[rIndex + 2][cIndex + 2])} step="1"  min={minValue[cIndex]} max={maxValue[cIndex]}>
                         <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                         
                         {#if displayMinMax}
                             <div>{minValue[cIndex]}/{maxValue[cIndex]}</div>
                         {/if}
-                    {/if}
+                    <!-- {/if} -->
                 {:else if changedArray[rIndex + 2][cIndex + 2] === true}
                     <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$generalWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $generalWrite[rIndex + 2][cIndex + 2])} step="1"  min={minValue[cIndex]} max={maxValue[cIndex]}>
 
