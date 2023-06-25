@@ -91,7 +91,7 @@
     function handleRandomInt() {
         generateRandomInt(valuesOnly, 1, 100);
         for (let i = 0; i < valuesOnly.length; i++) {
-          for (let j = 0; j < valuesOnly[i].length - 1; j++) {
+          for (let j = 0; j < valuesOnly[i].length; j++) {
             $chemWrite[i + 2][j + 2] = valuesOnly[i][j]
             updateArray(i + 2, j + 2, $chemWrite[i + 2][j + 2])
     
