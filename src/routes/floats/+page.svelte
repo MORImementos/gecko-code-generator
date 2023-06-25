@@ -168,7 +168,7 @@ function handleRandomInt() {
 		
 	{#each $floatWrite.slice(2, $floatWrite.length) as row, rIndex}
 		<tr>
-		  <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`src/lib/Images/${row[0]}.png`} alt={row[0]}></div></td>
+		  <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`} alt={row[0]}></div></td>
 		  {#each row.slice(2, row.length - 2) as column, cIndex}
 		    <td>
         {#if changedArray[rIndex + 2][cIndex + 2] !== true}

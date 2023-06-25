@@ -5,6 +5,7 @@
       import { convertToHex, modifyAddress } from "$lib/codeGen";
       import { clickToCopyAction } from "svelte-legos";
       import { exportCodesToFile, generateRandomFloat, generateRandomInt, handleCopyDone } from "$lib/helpers/helpers";
+      import { base } from "$app/paths"
       let joinedCodes = "";
       
       let originalValues = structuredClone($chemRead)
@@ -156,7 +157,7 @@
         {#each $chemWrite.slice(2, $chemWrite.length) as row, rIndex}
             <tr class="flex-col wrap">
               <!-- character names -->
-              <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`src/lib/Images/${row[0]}.png`} alt={row[0]}></div></td>
+              <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`} alt={row[0]}></div></td>
               {#each row.slice(2, row.length) as column, cIndex}
                 <td class="w-[20%]">
                 <!-- if array has not changed -->
