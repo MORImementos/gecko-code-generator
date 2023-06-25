@@ -1,10 +1,15 @@
 <script>
     // @ts-nocheck
-      import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+      import { Accordion, AccordionItem, Table, Paginator, ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
       import { chemRead, chemWrite } from "$lib/stores";
       import { convertToHex, modifyAddress } from "$lib/codeGen";
       import { clickToCopyAction } from "svelte-legos";
       import { exportCodesToFile, generateRandomFloat, generateRandomInt, handleCopyDone } from "$lib/helpers/helpers";
+	import { onMount } from "svelte";
+
+
+
+
       let joinedCodes = "";
       
       let originalValues = structuredClone($chemRead)
@@ -98,12 +103,25 @@
           }
         }
       }
-    
-    </script>
-    
-    
-    
-    {#if $chemWrite}
+
+
+  const source = $chemWrite
+  console.log(source)
+  let page = {
+    offset: 0,
+    limit: 5,
+    size: source.length,
+    amounts: [1, 2, 5, 10],
+  };
+
+    $: paginatedSource = $chemWrite.slice(
+      page.offset * page.limit,
+      page.offset * page.limit + page.limit
+    )
+
+</script>
+
+    {#if paginatedSource}
     
     <div class="card btn-group flex text-primary-500">
       <div class="btn flex">
@@ -139,7 +157,6 @@
     <div class="table-container">
     
     
-    
     <table class="table table-interactive table-compact text-primary-400">
       <thead>
         <tr class="justify-center">
@@ -147,49 +164,50 @@
           <th class="flex-col justify-center text-center ">{$chemWrite[0][0]}</th>
           <!-- rest of headers -->
         {#each $chemWrite[0].slice(2, $chemWrite[0].length) as header}
-          <th class="flex-col justify-center text-center">{header}</th>
+          <th class="flex-col justify-center text-center"><img src={`src/lib/Images/${header}.png`} alt={header}></th>
         {/each}
         </tr>
       </thead>
       <tbody class="text-center justify-center align-middle">
             
-        {#each $chemWrite.slice(2, $chemWrite.length) as row, rIndex}
-            <tr class="flex-col wrap">
+        {#each paginatedSource.slice(2) as row, rIndex}
+            
+            <tr>
               <!-- character names -->
               <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`src/lib/Images/${row[0]}.png`} alt={row[0]}></div></td>
               {#each row.slice(2, row.length) as column, cIndex}
-                <td class="w-[20%]">
+                <td>
                 <!-- if array has not changed -->
                 {#if changedArray[rIndex + 2][cIndex + 2] !== true}
                     <!-- if anti chem -->
-                    {#if $chemWrite[rIndex + 2][cIndex + 2] < 20}
-                      <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                    {#if paginatedSource[rIndex + 2][cIndex + 2] < 20}
+                      <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
                       <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                     <!-- if chem -->
-                    {:else if $chemWrite[rIndex + 2][cIndex + 2] > 90} 
-                        <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                    {:else if paginatedSource[rIndex + 2][cIndex + 2] > 90} 
+                        <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
                         <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                     <!-- otherwise default -->
                     {:else}
-                        <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                        <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
                         <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                     {/if}
                 {:else if changedArray[rIndex + 2][cIndex + 2] === true}
                   <!-- if anti chem  -->
-                  {#if $chemWrite[rIndex + 2][cIndex + 2] < 20}
-                    <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                  {#if paginatedSource[rIndex + 2][cIndex + 2] < 20}
+                    <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
 
                     <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
 
                   <!-- if chem -->
-                  {:else if $chemWrite[rIndex + 2][cIndex + 2] > 90} 
-                    <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                  {:else if paginatedSource[rIndex + 2][cIndex + 2] > 90} 
+                    <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
                       
                     <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
                       
                   <!-- otherwise default -->
                   {:else}
-                    <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100">
+                    <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={paginatedSource[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, paginatedSource[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
 
                     <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
                   {/if}
@@ -200,10 +218,18 @@
                 </td>
               {/each}
             </tr>
+
         {/each}
         </tbody>
+
     </table>
     </div>
-    
+    <Paginator
+    bind:settings={page}
+    showFirstLastButtons="{false}"
+    showPreviousNextButtons="{true}"
+    showNumerals maxNumerals={1}
+  />
+  
     
     {/if}
