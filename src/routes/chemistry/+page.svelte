@@ -155,20 +155,44 @@
             
         {#each $chemWrite.slice(2, $chemWrite.length) as row, rIndex}
             <tr>
+              <!-- character names -->
               <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`src/lib/Images/${row[0]}.png`} alt={row[0]}></div></td>
               {#each row.slice(2, row.length) as column, cIndex}
                 <td class="w-[20%]">
-            {#if changedArray[rIndex + 2][cIndex + 2] !== true}
-    
-                        <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={
-                updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+                <!-- if array has not changed -->
+                {#if changedArray[rIndex + 2][cIndex + 2] !== true}
+                    <!-- if anti chem -->
+                    {#if $chemWrite[rIndex + 2][cIndex + 2] < 20}
+                      <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+                      <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
+                    <!-- if chem -->
+                    {:else if $chemWrite[rIndex + 2][cIndex + 2] > 90} 
+                        <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
                         <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
+                    <!-- otherwise default -->
+                    {:else}
+                        <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+                        <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
+                    {/if}
                 {:else if changedArray[rIndex + 2][cIndex + 2] === true}
-    
-                        <input class="variant-ringed-primary input text-center" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={
-                updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1" min="1" max="255">
-    
-                        <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
+                  <!-- if anti chem  -->
+                  {#if $chemWrite[rIndex + 2][cIndex + 2] < 20}
+                    <input class="variant-filled-error input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+
+                    <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
+
+                  <!-- if chem -->
+                  {:else if $chemWrite[rIndex + 2][cIndex + 2] > 90} 
+                    <input class="variant-filled-primary input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+                      
+                    <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
+                      
+                  <!-- otherwise default -->
+                  {:else}
+                    <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$chemWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $chemWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="255">
+
+                    <div hidden>{generateCode(modifyAddress($chemRead[rIndex + 2][1], Number($chemRead[1][cIndex + 2]), 'byte'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'byte'), rIndex + 2, cIndex + 2)}</div>
+                  {/if}
     
               <button class="btn btn-lg " on:click={() => resetCell(rIndex + 2, cIndex + 2)}>Reset</button>
     
