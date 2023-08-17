@@ -1,15 +1,18 @@
-<script>
+<script lang="ts">
   // @ts-nocheck
-    import { Accordion, AccordionItem, RangeSlider } from "@skeletonlabs/skeleton";
+    import { Accordion, AccordionItem, RangeSlider, SlideToggle } from "@skeletonlabs/skeleton";
     import { mgttInGameRead, mgttInGameWrite } from "$lib/stores";
     import { convertToHex, modifyAddress } from "$lib/codeGen";
     import { clickToCopyAction } from "svelte-legos";
     import { exportCodesToFile, generateRandomInt, handleCopyDone } from "$lib/helpers/helpers";
     import { base } from "$app/paths"
+
     let joinedCodes = "";
     
     let originalValues = structuredClone($mgttInGameRead)
-  
+
+    let convertedType;
+
     // initialize array of undefined values for tracking the contents of changes
     let codeArray = Array.apply(null, Array($mgttInGameRead.length)).map(function () {
       return Array.apply(null, Array($mgttInGameWrite[0].length)).map(function () {
@@ -103,8 +106,8 @@
   function handleRandomInt() {
       for (let i = 0; i < valuesOnly.length; i++) {
         for (let j = 0; j < valuesOnly[i].length; j++) {
-          const minValue = (j === 0) ? 0 : -10
-          const maxValue = (j === 0) ? 500 : 10
+          const minValue = (j === 0) ? 100 : (j === 2) ? 0 : -10
+          const maxValue = (j === 0) ? 450 : (j === 2) ? 1 : 10
           generateRandomInt(valuesOnly, minValue, maxValue);  
           $mgttInGameWrite[i + 2][j + 2] = valuesOnly[i][j];
           updateArray(i + 2, j + 2, $mgttInGameWrite[i + 2][j + 2]);
@@ -112,7 +115,7 @@
       }
     }
   
-  
+
   </script>
   
   
@@ -182,7 +185,11 @@
                 {#if cIndex === 0}
                   <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={5} max={500} step={5} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>         
                   <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
-                {:else if cIndex > 0}
+                <!-- if shot type -->
+                {:else if cIndex === 2}
+                    <RangeSlider checked={true} bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={0} max={1} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>         
+                    <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
+                {:else}
                   <!-- <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100"> -->
                   <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} min={-10} max={10} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider> 
                   <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
@@ -197,14 +204,21 @@
 
                     <!-- <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1] - 0x8ce30, Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div> -->
 
-                  {:else if cIndex > 0}
+                  {:else if cIndex === 2}
+
+                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={0} max={1}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
+                    <!-- <SlideToggle bind:value={convertedType} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}></SlideToggle> -->
+
+                    <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
+
+                  {:else}
                     <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={-10} max={10}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
 
                     <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
 
                     <!-- <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1] - 0x8ce30, Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div> -->
                   {/if}
-            <button class="btn btn-lg " on:click={() => resetCell(rIndex + 2, cIndex + 2)}>Reset</button>
+            <button class="btn btn-sm variant-filled-tertiary" on:click={() => resetCell(rIndex + 2, cIndex + 2)}>Reset</button>
               {/if}
               </td>
             {/each}
