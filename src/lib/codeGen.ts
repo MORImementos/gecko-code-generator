@@ -22,7 +22,11 @@ export function convertToHex(value: number, dataType: string) {
       const wordValue = value & 0xFFFFFFFF; // Masking to ensure 4 bytes
 
       // Displaying the word value as hex
-      const wordHex = wordValue.toString(16).padStart(8, '0');
+      let wordHex = wordValue.toString(16).padStart(8, '0');
+      console.log(wordHex);
+      if (wordValue < 0) {
+        wordHex = (wordValue >>> 0).toString(16);
+      }
       // console.log('Word value (hex):', wordHex);
 
       return wordHex.toUpperCase();
