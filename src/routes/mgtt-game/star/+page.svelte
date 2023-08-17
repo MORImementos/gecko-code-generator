@@ -173,7 +173,7 @@
           <!-- {#if rIndex % 2 !== 0} -->
           <tr class="flex-col wrap">
             <!-- character names -->
-            <td class="w-[6.25%]"><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`}></div></td>
+            <td class="w-[6.25%]"><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`${base}/Images/${row[0]}.png`}></div></td>
             {#each row.slice(2, row.length) as column, cIndex}
               <td class="w-[12%]">
               <!-- if array has not changed -->

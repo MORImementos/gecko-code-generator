@@ -157,7 +157,7 @@
         {#each $chemWrite.slice(2, $chemWrite.length) as row, rIndex}
             <tr class="flex-col wrap">
               <!-- character names -->
-              <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`} alt={row[0]}></div></td>
+              <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`${base}/Images/${row[0]}.png`} alt={row[0]}></div></td>
               {#each row.slice(2, row.length) as column, cIndex}
                 <td class="w-[20%]">
                 <!-- if array has not changed -->
