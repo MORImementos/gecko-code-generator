@@ -187,7 +187,7 @@
                   <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                 <!-- if shot type -->
                 {:else if cIndex === 2}
-                    <RangeSlider checked={true} bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={0} max={1} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>         
+                    <RangeSlider checked={true} bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={0} max={1} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{($mgttInGameWrite[rIndex + 2][cIndex + 2]) === "0" ? "Draw" : "Fade"}</RangeSlider>         
                     <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                 {:else}
                   <!-- <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step="1"  min="1" max="100"> -->
@@ -198,7 +198,7 @@
               {:else if changedArray[rIndex + 2][cIndex + 2] === true}
                   <!-- <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step="1"  min="-10" max="10"> -->
                   {#if cIndex === 0}
-                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={5}  min={0} max={500}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
+                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={5} min={1} max={500} ticked>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
 
                     <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
 
@@ -206,13 +206,13 @@
 
                   {:else if cIndex === 2}
 
-                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={0} max={1}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
+                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={0} max={1} ticked>{($mgttInGameWrite[rIndex + 2][cIndex + 2]) === 0 ? "Draw" : "Fade"}</RangeSlider>
                     <!-- <SlideToggle bind:value={convertedType} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}></SlideToggle> -->
 
                     <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
 
                   {:else}
-                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={-10} max={10}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
+                    <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1}  min={-10} max={10} ticked>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>
 
                     <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
 
