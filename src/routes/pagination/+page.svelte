@@ -163,7 +163,7 @@
           <th class="flex-col justify-center text-center ">{$chemWrite[0][0]}</th>
           <!-- rest of headers -->
         {#each $chemWrite[0].slice(2, $chemWrite[0].length) as header}
-          <th class="flex-col justify-center text-center"><img src={`Images/${header}.png`} alt={header}></th>
+          <!-- <th class="flex-col justify-center text-center"><img src={`Images/${header}.png`} alt={header}></th> -->
         {/each}
         </tr>
       </thead>
@@ -173,7 +173,7 @@
             
             <tr>
               <!-- character names -->
-              <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`} alt={row[0]}></div></td>
+              <!-- <td><div class="flex justify-center">{row[0]}</div><div class="flex justify-center"><img src={`Images/${row[0]}.png`} alt={row[0]}></div></td> -->
               {#each row.slice(2, row.length) as column, cIndex}
                 <td>
                 <!-- if array has not changed -->
