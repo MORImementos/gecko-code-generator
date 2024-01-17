@@ -184,7 +184,7 @@
                 <!-- if drive distance -->
                 {#if cIndex === 0}
                   <!-- <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={5} max={500} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>  -->       
-                  <input bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} type="number" min="5" max="500" step="1" on:input={() => updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} />
+                  <input class="input" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} type="number" min="5" max="500" step="1" on:input={() => updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} />
 
                   <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                 <!-- if shot type -->
@@ -201,7 +201,7 @@
                   <!-- <input class="variant-ghost-surface input text-center w-[60px]" type="number" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:input={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step="1"  min="-10" max="10"> -->
                   {#if cIndex === 0}
                     <!-- <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} step={1} min={1} max={500} ticked>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider> -->
-                    <input bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} type="number" min="5" max="500" step="1" on:input={() => updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} />
+                    <input class="input" bind:value={$mgttInGameWrite[rIndex + 2][cIndex + 2]} type="number" min="5" max="500" step="1" on:input={() => updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])} />
 
                     <div hidden>{generateCode(modifyAddress($mgttInGameRead[rIndex + 2][1], Number($mgttInGameRead[1][cIndex + 2]), 'word'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'word'), rIndex + 2, cIndex + 2)}</div>
 
