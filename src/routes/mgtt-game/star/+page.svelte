@@ -183,7 +183,7 @@
               {#if changedArray[rIndex + 2][cIndex + 2] !== true}
                 <!-- if drive distance -->
                 {#if cIndex === 0}
-                  <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={5} max={500} step={5} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>         
+                  <RangeSlider bind:value={$mgttInGameWrite[rIndex + 2] [cIndex + 2]} min={5} max={500} step={1} ticked on:change={updateArray(rIndex + 2, cIndex + 2, $mgttInGameWrite[rIndex + 2][cIndex + 2])}>{$mgttInGameWrite[rIndex + 2][cIndex + 2]}</RangeSlider>         
                   <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
                 <!-- if shot type -->
                 {:else if cIndex === 2}
