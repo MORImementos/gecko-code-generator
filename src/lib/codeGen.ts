@@ -30,7 +30,7 @@ export function convertToHex(value: number, dataType: string) {
       // console.log('Word value (hex):', wordHex);
 
       return wordHex.toUpperCase();
-    } else if (dataType === 'halfword') {
+    } else if (dataType === "short" || dataType === 'halfword') {
       // Converting integer to hex format with the last 2 bytes and 2 preceding zero bytes
       const halfWordValue = value & 0xFFFF; // Masking to ensure 2 bytes
 
@@ -46,9 +46,10 @@ export function convertToHex(value: number, dataType: string) {
 
       // Displaying the byte value as hex
       const byteHex = byteValue.toString(16).padStart(2, '0');
+      const fullHex = "000000" + byteHex;
       // console.log('Byte value (hex):', byteHex);
 
-      return byteHex.toUpperCase();
+      return fullHex.toUpperCase();
     } else {
       console.log('Invalid data type');
       return null;

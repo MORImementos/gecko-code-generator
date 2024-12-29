@@ -13,10 +13,11 @@
 	<nav>
 		<!-- <button class="btn"><a href="/batting">Batting Stats</a></button>
 		<button class="btn"><a href="/defense">Defensive Stats</a></button> -->
-		<button class="btn"><a href="{base}/general">General Stats</a></button>
+		<button class="btn"><a href="{base}/general">Character Stats</a></button>
 		<!-- <button class="btn"><a href="/hitboxes">Hitboxes</a></button> -->
 		<button class="btn"><a href="{base}/floats">Batting Floats</a></button>
 		<button class="btn"><a href="{base}/chemistry">Chemistry</a></button>
+		<button class="btn"><a href="{base}/battingMisc">Other Batting</a></button>
 		<button class="btn"><a href="{base}/mgtt-game/star">MGTT Star Characters</a></button>
 	</nav>
 	</div>

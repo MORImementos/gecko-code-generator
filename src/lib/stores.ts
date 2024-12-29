@@ -251,3 +251,45 @@ export const mgttInGame = [
 
 export const mgttInGameRead = readable(mgttInGame)
 export const mgttInGameWrite = writable(structuredClone(mgttInGame))
+
+export const battingMisc = [
+  ["Constant Name", "Addr", "Usual Value", "Type", "Min", "Max", "Increment"],
+  ["On Overcharge, Interpolation Between Charge and Slap Hit Power", "0x807b733c", 0.5, "float", 0, 1, 0.01],
+  ["Box Movement Speed Modifier", "0x807b7340", 1.0, "float", 0, 10, 0.1],
+  ["Box Movement Speed Modifier when Centering (R Press)", "0x807b7344", 3.0, "float", 0, 10, 0.1],
+  ["Moonshot (5 Star) Power Multiplier", "0x807b7348", 1.5, "float", 0, 10, 0.01],
+  ["Frame Fully Overcharged", "0x807b734c", 180, "short", 0, 500, 1],
+  ["Frames Holding A Until Charge Hit Enabled", "0x807b734e", 12, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Regular", "0x807b7366", 1, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Captain Star", "0x807b7368", 50, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Moonshot (5 Star)", "0x807b736a", 50, "short", 0, 500, 1],
+  ["Air Resistance", "0x807b5c00", 40, "byte", 0, 255, 1],
+  ["Gravity", "0x807b5bfc", 0.00275, "float", 0, 1, 0.00001],
+  ["Chemistry Power Boost 1", "0x807b5c20", 1.05, "float", 0, 5, 0.01],
+  ["Chemistry Power Boost 2", "0x807b5c24", 1.1, "float", 0, 5, 0.01],
+  ["Chemistry Power Boost 3", "0x807b5c28", 1.2, "float", 0, 5, 0.01],
+  ["Maximum Team Stars", "0x807b76f4", 5, "byte", 0, 255, 1],
+  ["Stars Spent for Captain Star Swing as Captain", "0x807b76f5", 1, "byte", 0, 255, 1],
+  ["Stars Spent for Captain Star Swing When Not Captain", "0x807b76f6", 1, "byte", 0, 255, 1],
+  ["Stars Spent for Non-Captain Star Swing", "0x807b76f7", 1, "byte", 0, 255, 1],
+  ["Fire Star Hit: Stun Frames", "0x807b7354", 90, "short", 0, 500, 1],
+  ["(Maybe) Peach Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
+  ["(Maybe) Daisy Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
+  ["Banana Star Hit: Direction Change Each Frame (Radians)", "0x807b7320", 0.008, "float", 0, 1, 0.001],
+  ["Banana Star Hit: % of Hangtime When Curve Starts", "0x807b7324", 0.25, "float", 0, 1, 0.01],
+  ["Banana Star Hit: % of Hangtime When Curve Ends", "0x807b7328", 0.95, "float", 0, 1, 0.01],
+  ["Garlic/Eggplant Star Hit: Frames Before Ground When Ball Splits", "0x807b735c", 120, "short", 0, 500, 1],
+  ["Garlic/Eggplant Star Hit: Spread Angle (Radians) RNG Lowerbound", "0x807b7334", 0.2, "float", 0, 1, 0.01],
+  ["Garlic/Eggplant Star Hit: Spread Angle (Radians) RNG Upperbound", "0x807b7338", 0.3, "float", 0, 1, 0.01],
+  ["Bullet Star Hit: Pushback Factor", "0x807b7330", 4, "float", 0, 50, 0.01],
+  ["Egg Star Hit: Velocity % Maintained After Each Bounce", "0x807b732c", 0.8, "float", 0, 1, 0.01],
+  ["Egg Star Hit: Number of Bounces", "0x807b7358", 2, "short", 0, 20, 1],
+
+]
+
+export const battingMiscRead = readable(battingMisc)
+export const battingMiscWrite = writable(structuredClone(battingMisc))
+
+//hit power, angles, contact sizes. For contact, use this fn 80650f64. H angle: 80650c30. v angle 806504fc
+//["Captain Star Hit Bat Contact Size", "0x807adb24", 100, "float", 0, 500, 1],
+//stadium bounce physics
