@@ -354,3 +354,11 @@ export const battingHorizontalAngles = [
 
 export const battingHorizontalAnglesRead = readable(battingHorizontalAngles)
 export const battingHorizontalAnglesWrite = writable(structuredClone(battingHorizontalAngles))
+
+export const battingExitVelocity = [
+  [[100, 130, 65426], [140, 145, 65436], [145, 150, 65426], [140, 145, 65436], [100, 130, 65426]], 
+  [[140, 150, 65416], [162, 177, 65376], [160, 170, 0], [162, 177, 65376], [140, 150, 65416]]
+]
+
+export const battingExitVelocityRead = readable(battingExitVelocity)
+export const battingExitVelocityWrite = writable(structuredClone(battingExitVelocity))
