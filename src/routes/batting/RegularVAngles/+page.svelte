@@ -66,7 +66,7 @@
     } else {
       codeGenArray[hitIndex][contactIndex][rangeIndex][uLIndex] = generatedCode;
     }
-    console.log(codeGenArray)
+
     codeGenArray.forEach(hit => {
       hit.forEach(contact => {
         contact.forEach(range => {

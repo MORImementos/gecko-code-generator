@@ -66,7 +66,7 @@
     } else {
       codeGenArray[inputIndex][swingIndex][frameIndex][uLIndex] = generatedCode;
     }
-    console.log(codeGenArray)
+    
     codeGenArray.forEach(input => {
       input.forEach(swing => {
         swing.forEach(frame => {

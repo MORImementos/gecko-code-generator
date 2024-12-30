@@ -17,7 +17,6 @@
         })
       })
     })
-    console.log(codeArray)
   
     // initialize array of undefined values for tracking whether changes have occured or not
     let changedArray = Array.apply(null, Array($battingLaunchAnglesStarRead.length)).map(function () {
@@ -60,7 +59,7 @@
     } else {
       codeGenArray[starIndex][rIndex][cIndex] = generatedCode;
     }
-    console.log(codeGenArray)
+
     codeGenArray.forEach(star => {
       star.forEach(row => {
         row.forEach(val => {
