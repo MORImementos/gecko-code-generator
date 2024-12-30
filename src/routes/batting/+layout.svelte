@@ -10,9 +10,10 @@
 <div class="card btn-group flex text-primary-500">
 	<nav>
 		<button class="btn"><a href="{base}/batting/floats">Character Ranges</a></button>	
-		<button class="btn"><a href="{base}/batting/RegularAngles">Regular Hit Vertical Angle Ranges</a></button>		
-		<button class="btn"><a href="{base}/batting/RangeProbabilities">Regular Hit Vertical Angle Probabilities</a></button>		
-		<button class="btn"><a href="{base}/batting/StarAngles">Star Hit Vertical Angle Ranges</a></button>
+		<button class="btn"><a href="{base}/batting/HAngles">Hit Horizontal Angle Ranges</a></button>	
+		<button class="btn"><a href="{base}/batting/RegularVAngles">Hit Vertical Angle Ranges</a></button>		
+		<button class="btn"><a href="{base}/batting/VRangeProbabilities">Hit Vertical Angle Probabilities</a></button>		
+		<button class="btn"><a href="{base}/batting/StarVAngles">Star Hit Vertical Angle Ranges</a></button>
 		<button class="btn"><a href="{base}/batting/battingMisc">Other</a></button>	
 	</nav>
 </div>

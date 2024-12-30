@@ -336,3 +336,21 @@ export const battingLaunchAngleProbabilities = [
 
 export const battingLaunchAnglesProbabilitiesRead = readable(battingLaunchAngleProbabilities)
 export const battingLaunchAnglesProbabilitiesWrite = writable(structuredClone(battingLaunchAngleProbabilities))
+
+export const battingHorizontalAngles = [
+  [
+    [[0, 0], [0, 0], [64836, 65036], [65036, 65186], [65136, 65286], [65186, 65436], [65386, 250], [200, 300], [250, 400], [350, 550], [550, 700], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64936, 65136], [65136, 65336], [65236, 65436], [65336, 200], [100, 400], [300, 450], [350, 600], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ], 
+  [
+    [[0, 0], [0, 0], [64786, 65036], [65036, 65236], [65236, 65386], [65386, 200], [200, 400], [300, 450], [400, 600], [500, 600], [600, 700], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64936, 65136], [65136, 65336], [65236, 100], [100, 400], [100, 400], [200, 500], [500, 700], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ], 
+  [
+    [[0, 0], [0, 0], [64836, 64936], [64936, 65136], [65086, 65186], [65136, 65236], [65186, 65336], [65336, 150], [150, 300], [300, 700], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64986, 65236], [65136, 65336], [65236, 65436], [65236, 65436], [65436, 200], [200, 450], [450, 650], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ]
+] 
+
+export const battingHorizontalAnglesRead = readable(battingHorizontalAngles)
+export const battingHorizontalAnglesWrite = writable(structuredClone(battingHorizontalAngles))
