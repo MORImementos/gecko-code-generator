@@ -138,7 +138,7 @@
 
 <div class="flex text-primary-500">
   The launch angle for each star hit is randomly chosen between an upper and lower bound for each type of star and the contact quality type. <br>
-  (These are byte angles, which are out of 4096 instead of 360. To convert from degrees to bytes, just do (desired degrees) * 4096/360.) <br>
+  (These are byte angles, which are out of 4096 instead of 360. To convert from degrees to bytes, just do (desired degrees) * 4096/360. Numbers above 4096 get translated back to be between 0 and 4096) <br>
 </div>
 
 <TabGroup>
