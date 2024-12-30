@@ -298,31 +298,32 @@ export const battingMiscWrite = writable(structuredClone(battingMisc))
 // vertical ranges: hit type, contact type, 5 probabilities, upper and lower 100
 
 
-// vertical ranges non cap stars: 3 star swings, contact type, upper and lower 30
-export const battingLaunchAnglesNonCapStar = [
-  [
-    [250, 300],
-    [300, 350],
-    [350, 400],
-    [400, 450],
-    [450, 500]
-  ],
-  [
-    [50, 100],
-    [50, 100],
-    [50, 100],
-    [50, 100],
-    [50, 100]
-  ],
-  [
-    [120, 160],
-    [160, 200],
-    [160, 200],
-    [160, 200],
-    [120, 160]
-  ]
+// vertical ranges stars: 15 star swings (3 non captain, 12 captain), 5 contact types, 2 upper and lower (150 total)
+export const battingLaunchAnglesStar = [
+  [[250, 300], [300, 350], [350, 400], [400, 450], [450, 500]], //pop
+  [[50, 100], [50, 100], [50, 100], [50, 100], [50, 100]], //grounder
+  [[120, 160], [160, 200], [160, 200], [160, 200], [120, 160]], //ld
+  [[59, 61], [59, 61], [59, 61], [59, 61], [59, 61]], //captains start here
+  [[65435, 65437], [65435, 65437], [65435, 65437], [65435, 65437], [65435, 65437]], 
+  [[350, 400], [350, 400], [350, 400], [350, 400], [350, 400]], 
+  [[450, 500], [450, 500], [450, 500], [450, 500], [450, 500]], 
+  [[120, 160], [160, 200], [160, 200], [160, 200], [120, 160]], 
+  [[250, 300], [250, 300], [250, 300], [250, 300], [250, 300]], 
+  [[64, 80], [64, 80], [64, 80], [64, 80], [64, 80]], 
+  [[64, 80], [64, 80], [64, 80], [64, 80], [64, 80]], 
+  [[350, 400], [350, 400], [350, 400], [350, 400], [350, 400]], 
+  [[200, 250], [200, 250], [200, 250], [200, 250], [200, 250]], 
+  [[350, 600], [350, 600], [350, 600], [350, 600], [350, 600]], 
+  [[350, 600], [350, 600], [350, 600], [350, 600], [350, 600]]
 ]
 
-export const battingLaunchAnglesNonCapStarRead = readable(battingLaunchAnglesNonCapStar)
-export const battingLaunchAnglesNonCapStarWrite = writable(structuredClone(battingLaunchAnglesNonCapStar))
-// vertical ranges cap stars: cap star, contact type, upper and lower 120
+export const battingLaunchAnglesStarRead = readable(battingLaunchAnglesStar)
+export const battingLaunchAnglesStarWrite = writable(structuredClone(battingLaunchAnglesStar))
+
+export const battingLaunchAnglesRegular = [
+  [[[65486, 50], [50, 100], [100, 300], [300, 400], [400, 500]], [[50, 150], [150, 200], [200, 250], [250, 300], [300, 350]], [[50, 150], [150, 200], [150, 200], [200, 300], [300, 350]], [[50, 150], [150, 200], [200, 250], [250, 300], [300, 350]], [[65486, 50], [50, 100], [100, 300], [300, 400], [400, 500]]], 
+  [[[400, 450], [450, 500], [500, 550], [550, 600], [550, 600]], [[50, 100], [100, 150], [300, 400], [350, 450], [400, 500]], [[100, 200], [350, 400], [450, 500], [500, 550], [530, 580]], [[50, 100], [100, 150], [300, 400], [350, 450], [400, 500]], [[400, 450], [450, 500], [500, 550], [550, 600], [550, 600]]]
+]
+
+export const battingLaunchAnglesRegularRead = readable(battingLaunchAnglesRegular)
+export const battingLaunchAnglesRegularWrite = writable(structuredClone(battingLaunchAnglesRegular))

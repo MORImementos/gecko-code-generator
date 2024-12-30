@@ -9,7 +9,7 @@
 
 <div class="card btn-group flex text-primary-500">
 	<nav>
-		<button class="btn"><a href="{base}/battingLaunchAngles/NonCaptainStarAngles">Vertical Angle Ranges</a></button>
+		<button class="btn"><a href="{base}/battingLaunchAngles/StarAngles">Star Hit Vertical Angle Ranges</a></button>
 	</nav>
 </div>
 <slot />

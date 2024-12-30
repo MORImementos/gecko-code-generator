@@ -1,48 +1,48 @@
 <script>
   // @ts-nocheck
     import { Accordion, AccordionItem, TabGroup, Tab} from "@skeletonlabs/skeleton";
-    import { battingLaunchAnglesNonCapStarRead, battingLaunchAnglesNonCapStarWrite } from "$lib/stores";
+    import { battingLaunchAnglesStarRead, battingLaunchAnglesStarWrite } from "$lib/stores";
     import { convertToHex, modifyAddress } from "$lib/codeGen";
     import { clickToCopyAction } from "svelte-legos";
     import { base } from "$app/paths";
     import { exportCodesToFile, generateRandomFloat, generateRandomInt, handleCopyDone } from "$lib/helpers/helpers";
     let joinedCodes = "";
     
-    let originalValues = structuredClone($battingLaunchAnglesNonCapStarRead)
+    let originalValues = structuredClone($battingLaunchAnglesStarRead)
   
     // initialize array of undefined values for tracking the contents of changes
-    let codeArray = Array.apply(null, Array($battingLaunchAnglesNonCapStarRead.length)).map(function () {
-      return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0].length)).map(function () {
-        return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0][0].length)).map(function () {
+    let codeArray = Array.apply(null, Array($battingLaunchAnglesStarRead.length)).map(function () {
+      return Array.apply(null, Array($battingLaunchAnglesStarWrite[0].length)).map(function () {
+        return Array.apply(null, Array($battingLaunchAnglesStarWrite[0][0].length)).map(function () {
         })
       })
     })
     console.log(codeArray)
   
     // initialize array of undefined values for tracking whether changes have occured or not
-    let changedArray = Array.apply(null, Array($battingLaunchAnglesNonCapStarRead.length)).map(function () {
-      return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0].length)).map(function () {
-        return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0][0].length)).map(function () {
+    let changedArray = Array.apply(null, Array($battingLaunchAnglesStarRead.length)).map(function () {
+      return Array.apply(null, Array($battingLaunchAnglesStarWrite[0].length)).map(function () {
+        return Array.apply(null, Array($battingLaunchAnglesStarWrite[0][0].length)).map(function () {
         })
       })
     })
   
     // initialize array of undefined values for tracking codes of changed values - 
-    $: codeGenArray = Array.apply(null, Array($battingLaunchAnglesNonCapStarRead.length)).map(function () {
-      return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0].length)).map(function () {
-        return Array.apply(null, Array($battingLaunchAnglesNonCapStarWrite[0][0].length)).map(function () {
+    $: codeGenArray = Array.apply(null, Array($battingLaunchAnglesStarRead.length)).map(function () {
+      return Array.apply(null, Array($battingLaunchAnglesStarWrite[0].length)).map(function () {
+        return Array.apply(null, Array($battingLaunchAnglesStarWrite[0][0].length)).map(function () {
         })
       })
     })
 
-    let starTypes = ["Pop", "Grounder", "Line Drive"]
+    let starTypes = ["Pop", "Grounder", "Line Drive", "Mario", "Luigi", "Wario", "Waluigi", "DK", "Diddy", "Bowser", "Bowser Jr", "Yoshi", "Birdo", "Peach", "Daisy"]
     let tabSet = 0
     let contactTypes = ["Right Sour", "Right Nice", "Perfect", "Left Nice", "Left Sour"]
         
   function updateArray (starIndex, rIndex, cIndex, value) {
       codeArray[starIndex][rIndex][cIndex] = Number(value)
   
-      if (Number(codeArray[starIndex][rIndex][cIndex]) === $battingLaunchAnglesNonCapStarRead[starIndex][rIndex][cIndex]) {
+      if (Number(codeArray[starIndex][rIndex][cIndex]) === $battingLaunchAnglesStarRead[starIndex][rIndex][cIndex]) {
         codeArray[starIndex][rIndex][cIndex] = undefined;
         changedArray[starIndex][rIndex][cIndex] = undefined;
       } else {
@@ -54,7 +54,7 @@
     let generatedCode = `${add} ${code}`;
     joinedCodes = "";
   
-    if (Number(codeArray[starIndex][rIndex][cIndex]) === $battingLaunchAnglesNonCapStarRead[starIndex][rIndex][cIndex]) {
+    if (Number(codeArray[starIndex][rIndex][cIndex]) === $battingLaunchAnglesStarRead[starIndex][rIndex][cIndex]) {
           generatedCode = undefined
           codeGenArray[starIndex][rIndex][cIndex] = generatedCode
     } else {
@@ -78,7 +78,7 @@
       // Reset all values to their defaults
       for (let i = 0; i < originalValues.length; i++) {
         for (let j = 0; j < originalValues[i].length; j++) {
-          $battingLaunchAnglesNonCapStarWrite[i][j] = originalValues[i][j];
+          $battingLaunchAnglesStarWrite[i][j] = originalValues[i][j];
           codeArray[i][j] = undefined
           changedArray[i][j] = undefined
           codeGenArray[i][j] = undefined
@@ -89,7 +89,7 @@
   
   function resetCell(starIndex, rIndex, cIndex) {
     // Reset all values to their defaults
-    $battingLaunchAnglesNonCapStarWrite[starIndex][rIndex][cIndex] = originalValues[starIndex][rIndex][cIndex];
+    $battingLaunchAnglesStarWrite[starIndex][rIndex][cIndex] = originalValues[starIndex][rIndex][cIndex];
     codeArray[starIndex][rIndex][cIndex] = undefined        
         changedArray[starIndex][rIndex][cIndex] = undefined
     codeGenArray[starIndex][rIndex][cIndex] = undefined
@@ -99,7 +99,7 @@
   
   </script>
   
-{#if $battingLaunchAnglesNonCapStarWrite}
+{#if $battingLaunchAnglesStarWrite}
 
 <div class="card btn-group flex text-primary-500">
   <div class="btn flex">
@@ -138,7 +138,7 @@
 
 <div class="flex text-primary-500">
   The launch angle for each star hit is randomly chosen between an upper and lower bound for each type of star and the contact quality type. <br>
-  (These are byte angles, which are out of 1024 instead of 360. To convert from degrees to bytes, just do (desired degrees) * 1024/360.)
+  (These are byte angles, which are out of 4096 instead of 360. To convert from degrees to bytes, just do (desired degrees) * 4096/360.) <br>
 </div>
 
 <TabGroup>
@@ -161,7 +161,7 @@
           </tr>
         </thead>
         <tbody class="text-center justify-center align-middle">
-        {#each $battingLaunchAnglesNonCapStarWrite[starIndex] as row, rIndex}
+        {#each $battingLaunchAnglesStarWrite[starIndex] as row, rIndex}
           <tr>
             <td>
               <div class="flex justify-center">{contactTypes[rIndex]}</div> 
@@ -172,17 +172,21 @@
                     <input 
                       class="variant-ghost-surface input text-center" 
                       type="number"
-                      bind:value={$battingLaunchAnglesNonCapStarWrite[starIndex][rIndex][upperLower]} 
-                      on:input={updateArray(starIndex, rIndex, upperLower, $battingLaunchAnglesNonCapStarWrite[starIndex][rIndex][upperLower])} 
-                      step="1">
+                      bind:value={$battingLaunchAnglesStarWrite[starIndex][rIndex][upperLower]} 
+                      on:input={updateArray(starIndex, rIndex, upperLower, $battingLaunchAnglesStarWrite[starIndex][rIndex][upperLower])} 
+                      step="1"
+                      min="0"
+                      max="65535">
                     <div hidden>{resetCell(starIndex, rIndex, upperLower)}</div>
                   {:else if changedArray[starIndex][rIndex][upperLower] === true}
                     <input 
                       class="variant-ringed-primary input text-center" 
                       type="number" 
-                      bind:value={$battingLaunchAnglesNonCapStarWrite[starIndex][rIndex][upperLower]} 
-                      on:input={updateArray(starIndex, rIndex, upperLower, $battingLaunchAnglesNonCapStarWrite[starIndex][rIndex][upperLower])} 
-                      step="1">
+                      bind:value={$battingLaunchAnglesStarWrite[starIndex][rIndex][upperLower]} 
+                      on:input={updateArray(starIndex, rIndex, upperLower, $battingLaunchAnglesStarWrite[starIndex][rIndex][upperLower])} 
+                      step="1"
+                      min="0"
+                      max="65535">
                     <div hidden>
                       {generateCode(
                         modifyAddress("0x807b6a4c", 2 * (starIndex * 10 + rIndex * 2 + upperLower), "short"), 
