@@ -293,3 +293,36 @@ export const battingMiscWrite = writable(structuredClone(battingMisc))
 //hit power, angles, contact sizes. For contact, use this fn 80650f64. H angle: 80650c30. v angle 806504fc
 //["Captain Star Hit Bat Contact Size", "0x807adb24", 100, "float", 0, 500, 1],
 //stadium bounce physics
+
+// vertical probabilities: char traj, hit type, easy batting, 5 probabilities 300
+// vertical ranges: hit type, contact type, 5 probabilities, upper and lower 100
+
+
+// vertical ranges non cap stars: 3 star swings, contact type, upper and lower 30
+export const battingLaunchAnglesNonCapStar = [
+  [
+    [250, 300],
+    [300, 350],
+    [350, 400],
+    [400, 450],
+    [450, 500]
+  ],
+  [
+    [50, 100],
+    [50, 100],
+    [50, 100],
+    [50, 100],
+    [50, 100]
+  ],
+  [
+    [120, 160],
+    [160, 200],
+    [160, 200],
+    [160, 200],
+    [120, 160]
+  ]
+]
+
+export const battingLaunchAnglesNonCapStarRead = readable(battingLaunchAnglesNonCapStar)
+export const battingLaunchAnglesNonCapStarWrite = writable(structuredClone(battingLaunchAnglesNonCapStar))
+// vertical ranges cap stars: cap star, contact type, upper and lower 120
