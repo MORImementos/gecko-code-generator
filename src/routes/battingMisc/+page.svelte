@@ -86,36 +86,8 @@
         joinedCodes = ""
       }
       
-      let sliceList = $battingMiscWrite.slice(2);
-      let valuesOnly = sliceList.map((list) => list.slice(2, list.length - 1));
-      
-      function handleRandomFloat() {
-        generateRandomFloat(valuesOnly, -5, 5)
-        for (let i = 0; i < valuesOnly.length; i++) {
-            // -1 to not generate a float for the trimmed bat modifier
-            for (let j = 0; j < valuesOnly[i].length - 1; j++) {
-              $battingMiscWrite[i + 1][j + 2] = valuesOnly[i][j]
-              updateArray(i + 1, j + 2, $battingMiscWrite[i + 1][j + 2])
-      
-          }
-        }
-      }
-      
-      function handleRandomInt() {
-          generateRandomInt(valuesOnly, 0, 1);
-          for (let i = 0; i < valuesOnly.length; i++) {
-            for (let j = 8; j < valuesOnly[i].length; j++) {
-              $battingMiscWrite[i + 1][j + 2] = valuesOnly[i][j]
-              updateArray(i + 1, j + 2, $battingMiscWrite[i + 1][j + 2])
-      
-            }
-          }
-        }
-      
-      </script>
-      
-      
-      
+</script>
+          
 {#if $battingMiscWrite}
 
 <div class="card btn-group flex text-primary-500">
@@ -192,58 +164,7 @@
             <button class="btn btn-lg " on:click={() => resetCell(rIndex + 2, cIndex + 2)}>Reset</button>
           {/if}
         </td>
-<!--         {#each row.slice(2, row.length - 2) as column, cIndex}
-        <td>
-          {#if changedArray[rIndex + 2][cIndex + 2] !== true}
-            <input 
-              class="variant-ghost-surface input text-center" 
-              type="number" 
-              bind:value={$battingMiscWrite[rIndex + 2][cIndex + 2]} 
-              on:input={
-                updateArray(rIndex + 2, cIndex + 2, $battingMiscWrite[rIndex + 2][cIndex + 2])
-              } 
-              step="0.01">
-            <div hidden>{resetCell(rIndex + 2, cIndex + 2)}</div>
-          {:else if changedArray[rIndex + 2][cIndex + 2] === true}
-            <input 
-              class="variant-ringed-primary input text-center" 
-              type="number" 
-              bind:value={$battingMiscWrite[rIndex + 2][cIndex + 2]} 
-              on:input={
-                updateArray(rIndex + 2, cIndex + 2, $battingMiscWrite[rIndex + 2][cIndex + 2])
-              } 
-              step="0.01">
-             <div hidden>{generateCode(modifyAddress($battingMiscRead[rIndex + 2][1], $battingMiscRead[1][cIndex + 2], 'float'), convertToHex(codeArray[rIndex + 2][cIndex + 2], 'float'), rIndex + 2, cIndex + 2)}</div>
-            <button class="btn btn-lg " on:click={() => resetCell(rIndex + 2, cIndex + 2)}>Reset</button>
-          {/if}
-        </td>
-        {/each} -->
-            <!-- separate to make it easier to call function since it uses a word -->
-<!--         <td>	
-          {#if changedArray[rIndex + 2][row.length - 2] !== true}
-            <input 
-              class="variant-ghost-surface input text-center" 
-              type="number" 
-              bind:value={$battingMiscWrite[rIndex + 2][row.length - 2]} 
-              on:input={updateArray(rIndex + 2, row.length - 2, $battingMiscWrite[rIndex + 2][row.length - 2])} 
-              step="1" 
-              min="0" 
-              max="1">
-          {:else if changedArray[rIndex + 2][row.length - 2] === true}
-            <input 
-              class="variant-ringed-primary input text-center" 
-              type="number" 
-              bind:value={$battingMiscWrite[rIndex + 2][row.length - 2]} 
-              on:input={updateArray(rIndex + 2, row.length - 2, $battingMiscWrite[rIndex + 2][row.length - 2])} 
-              step="1" 
-              min="0" 
-              max="1">
-            <div hidden>{generateCode(modifyAddress($battingMiscRead[rIndex + 2][1], $battingMiscRead[1][row.length - 2], 'word'), convertToHex(codeArray[rIndex + 2][row.length - 2], 'word'), rIndex + 2, row.length - 2)}</div>
-            <button class="btn " on:click={() => resetCell(rIndex + 2, row.length - 2)}>Reset</button>
-
-          {/if}
-        </td>
- -->      </tr>
+      </tr>
     {/each}
     </tbody>
   </table>
