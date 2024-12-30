@@ -78,7 +78,6 @@
     }
   
   function resetCell(trajectoryIndex, zoneIndex) {
-    console.log(trajectoryIndex, zoneIndex)
     // Reset all values to their defaults
     $battingHorizontalTrajMultiplierWrite[trajectoryIndex][zoneIndex] = originalValues[trajectoryIndex][zoneIndex];
     codeArray[trajectoryIndex][zoneIndex] = undefined        
