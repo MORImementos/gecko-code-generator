@@ -266,6 +266,7 @@ export const battingMisc = [
   ["Air Resistance", "0x807b5c00", 40, "byte", 0, 255, 1],
   ["Gravity", "0x807b5bfc", 0.00275, "float", 0, 1, 0.00001],
   ["% of Final Hit Power that is Fixed (Not Related to Variable Contact Quality and Unadjusted Power)", "0x807b70f0", 0.8, "float", 0, 1, 0.01],
+  ["Global Power Adjustment", "0x807adb20", 0.5, "float", 0, 4, 0.01],
   ["Chemistry Power Boost 1", "0x807b5c20", 1.05, "float", 0, 5, 0.01],
   ["Chemistry Power Boost 2", "0x807b5c24", 1.1, "float", 0, 5, 0.01],
   ["Chemistry Power Boost 3", "0x807b5c28", 1.2, "float", 0, 5, 0.01],
@@ -373,3 +374,13 @@ export const battingHorizontalTrajMultiplier = [
 
 export const battingHorizontalTrajMultiplierRead = readable(battingHorizontalTrajMultiplier)
 export const battingHorizontalTrajMultiplierWrite = writable(structuredClone(battingHorizontalTrajMultiplier))
+
+export const battingCurveEffects = [
+  [0.5, 0.001, 0.003],
+  [0.25, 0.006, 0.008]
+]
+
+export const battingCurveEffectsRead = readable(battingCurveEffects)
+export const battingCurveEffectsWrite = writable(structuredClone(battingCurveEffects))
+
+// To add: hittable frame indicators
