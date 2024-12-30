@@ -35,7 +35,7 @@
       })
     })
 
-    let starTypes = ["Pop", "Grounder", "Line Drive", "Mario", "Luigi", "Wario", "Waluigi", "DK", "Diddy", "Bowser", "Bowser Jr", "Yoshi", "Birdo", "Peach", "Daisy"]
+    let starTypes = ["Mario", "Luigi", "Wario", "Waluigi", "DK", "Diddy", "Bowser", "Bowser Jr", "Yoshi", "Birdo", "Peach", "Daisy", "Pop", "Grounder", "Line Drive"]
     let tabSet = 0
     let contactTypes = ["Right Sour", "Right Nice", "Perfect", "Left Nice", "Left Sour"]
         
@@ -189,7 +189,7 @@
                       max="65535">
                     <div hidden>
                       {generateCode(
-                        modifyAddress("0x807b6a4c", 2 * (starIndex * 10 + rIndex * 2 + upperLower), "short"), 
+                        modifyAddress("0x807b695c", 2 * (starIndex * 10 + rIndex * 2 + upperLower), "short"), 
                         convertToHex(codeArray[starIndex][rIndex][upperLower], "short"), 
                         starIndex,
                         rIndex, 
