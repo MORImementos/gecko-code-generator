@@ -12,6 +12,7 @@
 		<button class="btn"><a href="{base}/batting/floats">Character Ranges</a></button>	
 		<button class="btn"><a href="{base}/batting/exitVelocity">Exit Velocity</a></button>	
 		<button class="btn"><a href="{base}/batting/HAngles">Horizontal Ranges</a></button>	
+		<button class="btn"><a href="{base}/batting/hTrajMultipliers">Horizontal Power Multipliers</a></button>	
 		<button class="btn"><a href="{base}/batting/RegularVAngles">Vertical Ranges</a></button>		
 		<button class="btn"><a href="{base}/batting/VRangeProbabilities">Vertical Probabilities</a></button>		
 		<button class="btn"><a href="{base}/batting/StarVAngles">Star Vertical Ranges</a></button>

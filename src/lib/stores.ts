@@ -265,6 +265,7 @@ export const battingMisc = [
   ["Frames Paused On Contact - Moonshot (5 Star)", "0x807b736a", 50, "short", 0, 500, 1],
   ["Air Resistance", "0x807b5c00", 40, "byte", 0, 255, 1],
   ["Gravity", "0x807b5bfc", 0.00275, "float", 0, 1, 0.00001],
+  ["% of Final Hit Power that is Fixed (Not Related to Variable Contact Quality and Unadjusted Power)", "0x807b70f0", 0.8, "float", 0, 1, 0.01],
   ["Chemistry Power Boost 1", "0x807b5c20", 1.05, "float", 0, 5, 0.01],
   ["Chemistry Power Boost 2", "0x807b5c24", 1.1, "float", 0, 5, 0.01],
   ["Chemistry Power Boost 3", "0x807b5c28", 1.2, "float", 0, 5, 0.01],
@@ -272,6 +273,7 @@ export const battingMisc = [
   ["Stars Spent for Captain Star Swing as Captain", "0x807b76f5", 1, "byte", 0, 255, 1],
   ["Stars Spent for Captain Star Swing When Not Captain", "0x807b76f6", 1, "byte", 0, 255, 1],
   ["Stars Spent for Non-Captain Star Swing", "0x807b76f7", 1, "byte", 0, 255, 1],
+  //["Captain Star Hit Bat Contact Size", "0x807adb24", 100, "float", 0, 500, 1], actually impacts lots of things so I don't think this should be modded
   ["Fire Star Hit: Stun Frames", "0x807b7354", 90, "short", 0, 500, 1],
   ["(Maybe) Peach Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
   ["(Maybe) Daisy Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
@@ -362,3 +364,12 @@ export const battingExitVelocity = [
 
 export const battingExitVelocityRead = readable(battingExitVelocity)
 export const battingExitVelocityWrite = writable(structuredClone(battingExitVelocity))
+
+export const battingHorizontalTrajMultiplier = [
+  [1, 1, 1, 1, 1],
+  [0.85, 0.95, 1, 1.05, 1.02],
+  [1.02, 1.05, 1, 0.95, 0.85]
+]
+
+export const battingHorizontalTrajMultiplierRead = readable(battingHorizontalTrajMultiplier)
+export const battingHorizontalTrajMultiplierWrite = writable(structuredClone(battingHorizontalTrajMultiplier))
