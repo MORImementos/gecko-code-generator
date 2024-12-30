@@ -9,9 +9,11 @@
 
 <div class="card btn-group flex text-primary-500">
 	<nav>
+		<button class="btn"><a href="{base}/battingLaunchAngles/floats">Character Ranges</a></button>	
 		<button class="btn"><a href="{base}/battingLaunchAngles/RegularAngles">Regular Hit Vertical Angle Ranges</a></button>		
 		<button class="btn"><a href="{base}/battingLaunchAngles/RangeProbabilities">Regular Hit Vertical Angle Probabilities</a></button>		
 		<button class="btn"><a href="{base}/battingLaunchAngles/StarAngles">Star Hit Vertical Angle Ranges</a></button>
+		<button class="btn"><a href="{base}/battingLaunchAngles/battingMisc">Other</a></button>	
 	</nav>
 </div>
 <slot />
