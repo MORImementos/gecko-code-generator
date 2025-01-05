@@ -14,6 +14,7 @@
 		<button class="btn"><a href="{base}/general">Character Stats</a></button>
 		<button class="btn"><a href="{base}/chemistry">Chemistry</a></button>
 		<button class="btn"><a href="{base}/batting/floats">Batting</a></button>
+		<button class="btn"><a href="{base}/pitching/pitchingMisc">Pitching</a></button>
 		<button class="btn"><a href="{base}/hitboxes/characters">Hitboxes</a></button>
 		<button class="btn"><a href="{base}/mgtt-game/star">MGTT Star Characters</a></button>
 	</nav>
