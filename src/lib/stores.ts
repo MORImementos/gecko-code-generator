@@ -384,3 +384,88 @@ export const battingCurveEffectsRead = readable(battingCurveEffects)
 export const battingCurveEffectsWrite = writable(structuredClone(battingCurveEffects))
 
 // To add: hittable frame indicators
+
+export const characterHitboxes = [
+  ["Char Name","Starting Addr","Air or Hard Grounder Radius","Slow Grounder Radius","Air or Hard Grounder Centered Radius","Height","Reaching Up or Down Animation Related","Unknown","Dive Range","Hight for Infield Dives"],
+  [null,null,"0x0","0x2","0x4","0x6","0x8","0xa","0xc","0xe"],
+  ['Mario', '0x807b8fb4', 117, 80, 75, 185, 80, 335, 140, 100], 
+  ['Luigi', '0x807b8fc4', 120, 80, 75, 185, 80, 350, 140, 100], 
+  ['DK', '0x807b8fd4', 250, 80, 100, 250, 95, 580, 300, 250], 
+  ['Diddy', '0x807b8fe4', 140, 80, 50, 150, 75, 410, 170, 100], 
+  ['Peach', '0x807b8ff4', 77, 80, 50, 242, 161, 572, 140, 100], 
+  ['Daisy', '0x807b9004', 77, 80, 50, 242, 161, 572, 140, 100], 
+  ['Yoshi', '0x807b9014', 120, 80, 50, 185, 80, 350, 450, 100], 
+  ['Baby Mario', '0x807b9024', 72, 80, 50, 130, 50, 297, 110, 100], 
+  ['Baby Luigi', '0x807b9034', 72, 80, 50, 130, 50, 297, 110, 100], 
+  ['Bowser', '0x807b9044', 196, 80, 100, 269, 180, 633, 230, 220], 
+  ['Wario', '0x807b9054', 140, 80, 75, 200, 100, 420, 200, 80], 
+  ['Waluigi', '0x807b9064', 230, 80, 100, 320, 180, 780, 200, 150], 
+  ['Koopa(R)', '0x807b9074', 84, 80, 50, 155, 75, 270, 120, 130], 
+  ['Toad(R)', '0x807b9084', 70, 80, 50, 130, 42, 228, 90, 50], 
+  ['Boo', '0x807b9094', 120, 80, 50, 185, 80, 350, 100, 100], 
+  ['Toadette', '0x807b90a4', 120, 80, 50, 185, 80, 350, 80, 70], 
+  ['Shy Guy(R)', '0x807b90b4', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Birdo', '0x807b90c4', 120, 80, 50, 185, 80, 350, 350, 100], 
+  ['Monty', '0x807b90d4', 120, 80, 50, 185, 80, 350, 100, 120], 
+  ['Bowser Jr', '0x807b90e4', 120, 80, 75, 185, 80, 350, 150, 100], 
+  ['Paratroopa(R)', '0x807b90f4', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Pianta(B)', '0x807b9104', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Pianta(R)', '0x807b9114', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Pianta(Y)', '0x807b9124', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Noki(B)', '0x807b9134', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Noki(R)', '0x807b9144', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Noki(G)', '0x807b9154', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Bro(H)', '0x807b9164', 120, 80, 50, 185, 80, 350, 150, 100], 
+  ['Toadsworth', '0x807b9174', 120, 80, 50, 185, 80, 350, 80, 40], 
+  ['Toad(B)', '0x807b9184', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(Y)', '0x807b9194', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(G)', '0x807b91a4', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(P)', '0x807b91b4', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Magikoopa(B)', '0x807b91c4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(R)', '0x807b91d4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(G)', '0x807b91e4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(Y)', '0x807b91f4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['King Boo', '0x807b9204', 120, 80, 50, 185, 80, 350, 100, 100], 
+  ['Petey', '0x807b9214', 120, 80, 100, 185, 80, 350, 230, 150], 
+  ['Dixie', '0x807b9224', 120, 80, 50, 185, 80, 350, 140, 100], 
+  ['Goomba', '0x807b9234', 120, 80, 50, 185, 80, 350, 110, 100], 
+  ['Paragoomba', '0x807b9244', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Koopa(G)', '0x807b9254', 120, 80, 50, 185, 80, 350, 120, 130], 
+  ['Paratroopa(G)', '0x807b9264', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Shy Guy(B)', '0x807b9274', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(Y)', '0x807b9284', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(G)', '0x807b9294', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(Bk)', '0x807b92a4', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Dry Bones(Gy)', '0x807b92b4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(G)', '0x807b92c4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(R)', '0x807b92d4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(B)', '0x807b92e4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Bro(F)', '0x807b92f4', 120, 80, 50, 185, 80, 350, 150, 100], 
+  ['Bro(B)', '0x807b9304', 120, 80, 50, 185, 80, 350, 150, 100]
+]
+
+export const characterHitboxesRead = readable(characterHitboxes)
+export const characterHitboxesWrite = writable(structuredClone(characterHitboxes))
+
+export const hitboxMisc = [
+  ["Constant Name", "Addr", "Usual Value", "Type", "Min", "Max", "Increment"],
+  ["Global Hitbox Scaler", "0x807ae638", 0.01, "float", 0, 2, 0.01],
+  ["Air or Hard Grounder Radius Minimum", "0x807b9314", 70, "short", 0, 65536, 1],
+  ["Height Minimum", "0x807b9316", 80, "short", 0, 65536, 1],
+  ["Dive Range Minimum", "0x807b931c", 0, "short", 0, 65536, 1],
+  ["Infield Dive Height Minimum", "0x807b931e", 250, "short", 0, 65536, 1],
+  ['Mario Hitbox Scaler', '0x800e8300', 1.2, 'float', 0, 10, 0.01], ['Luigi Hitbox Scaler', '0x800e8308', 1.2, 'float', 0, 10, 0.01], ['DK Hitbox Scaler', '0x800e8310', 1.2, 'float', 0, 10, 0.01], ['Diddy Hitbox Scaler', '0x800e8318', 1.2, 'float', 0, 10, 0.01], ['Peach Hitbox Scaler', '0x800e8320', 1.2, 'float', 0, 10, 0.01], 
+  ['Daisy Hitbox Scaler', '0x800e8328', 1.2, 'float', 0, 10, 0.01], ['Yoshi Hitbox Scaler', '0x800e8330', 1.2, 'float', 0, 10, 0.01], ['Baby Mario Hitbox Scaler', '0x800e8338', 1.2, 'float', 0, 10, 0.01], ['Baby Luigi Hitbox Scaler', '0x800e8340', 1.2, 'float', 0, 10, 0.01], ['Bowser Hitbox Scaler', '0x800e8348', 1.2, 'float', 0, 10, 0.01], 
+  ['Wario Hitbox Scaler', '0x800e8350', 1.2, 'float', 0, 10, 0.01], ['Waluigi Hitbox Scaler', '0x800e8358', 1.2, 'float', 0, 10, 0.01], ['Koopa(R) Hitbox Scaler', '0x800e8360', 1.2, 'float', 0, 10, 0.01], ['Toad(R) Hitbox Scaler', '0x800e8368', 1.2, 'float', 0, 10, 0.01], ['Boo Hitbox Scaler', '0x800e8370', 1.2, 'float', 0, 10, 0.01], 
+  ['Toadette Hitbox Scaler', '0x800e8378', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(R) Hitbox Scaler', '0x800e8380', 1.2, 'float', 0, 10, 0.01], ['Birdo Hitbox Scaler', '0x800e8388', 1.2, 'float', 0, 10, 0.01], ['Monty Hitbox Scaler', '0x800e8390', 1.2, 'float', 0, 10, 0.01], ['Bowser Jr Hitbox Scaler', '0x800e8398', 1.2, 'float', 0, 10, 0.01], 
+  ['Paratroopa(R) Hitbox Scaler', '0x800e83a0', 1.2, 'float', 0, 10, 0.01], ['Pianta(B) Hitbox Scaler', '0x800e83a8', 1.2, 'float', 0, 10, 0.01], ['Pianta(R) Hitbox Scaler', '0x800e83b0', 1.2, 'float', 0, 10, 0.01], ['Pianta(Y) Hitbox Scaler', '0x800e83b8', 1.2, 'float', 0, 10, 0.01], ['Noki(B) Hitbox Scaler', '0x800e83c0', 1.2, 'float', 0, 10, 0.01], 
+  ['Noki(R) Hitbox Scaler', '0x800e83c8', 1.2, 'float', 0, 10, 0.01], ['Noki(G) Hitbox Scaler', '0x800e83d0', 1.2, 'float', 0, 10, 0.01], ['Bro(H) Hitbox Scaler', '0x800e83d8', 1.2, 'float', 0, 10, 0.01], ['Toadsworth Hitbox Scaler', '0x800e83e0', 1.2, 'float', 0, 10, 0.01], ['Toad(B) Hitbox Scaler', '0x800e83e8', 1.2, 'float', 0, 10, 0.01], 
+  ['Toad(Y) Hitbox Scaler', '0x800e83f0', 1.2, 'float', 0, 10, 0.01], ['Toad(G) Hitbox Scaler', '0x800e83f8', 1.2, 'float', 0, 10, 0.01], ['Toad(P) Hitbox Scaler', '0x800e8400', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(B) Hitbox Scaler', '0x800e8408', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(R) Hitbox Scaler', '0x800e8410', 1.2, 'float', 0, 10, 0.01], 
+  ['Magikoopa(G) Hitbox Scaler', '0x800e8418', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(Y) Hitbox Scaler', '0x800e8420', 1.2, 'float', 0, 10, 0.01], ['King Boo Hitbox Scaler', '0x800e8428', 1.2, 'float', 0, 10, 0.01], ['Petey Hitbox Scaler', '0x800e8430', 1.2, 'float', 0, 10, 0.01], ['Dixie Hitbox Scaler', '0x800e8438', 1.2, 'float', 0, 10, 0.01], 
+  ['Goomba Hitbox Scaler', '0x800e8440', 1.2, 'float', 0, 10, 0.01], ['Paragoomba Hitbox Scaler', '0x800e8448', 1.2, 'float', 0, 10, 0.01], ['Koopa(G) Hitbox Scaler', '0x800e8450', 1.2, 'float', 0, 10, 0.01], ['Paratroopa(G) Hitbox Scaler', '0x800e8458', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(B) Hitbox Scaler', '0x800e8460', 1.2, 'float', 0, 10, 0.01], 
+  ['Shy Guy(Y) Hitbox Scaler', '0x800e8468', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(G) Hitbox Scaler', '0x800e8470', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(Bk) Hitbox Scaler', '0x800e8478', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(Gy) Hitbox Scaler', '0x800e8480', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(G) Hitbox Scaler', '0x800e8488', 1.2, 'float', 0, 10, 0.01], 
+  ['Dry Bones(R) Hitbox Scaler', '0x800e8490', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(B) Hitbox Scaler', '0x800e8498', 1.2, 'float', 0, 10, 0.01], ['Bro(F) Hitbox Scaler', '0x800e84a0', 1.2, 'float', 0, 10, 0.01], ['Bro(B) Hitbox Scaler', '0x800e84a8', 1.2, 'float', 0, 10, 0.01]
+]
+
+export const hitboxMiscRead = readable(hitboxMisc)
+export const hitboxMiscWrite = writable(structuredClone(hitboxMisc))
