@@ -251,3 +251,278 @@ export const mgttInGame = [
 
 export const mgttInGameRead = readable(mgttInGame)
 export const mgttInGameWrite = writable(structuredClone(mgttInGame))
+
+export const battingMisc = [
+  ["Constant Name", "Addr", "Usual Value", "Type", "Min", "Max", "Increment"],
+  ["On Overcharge, Interpolation Between Charge and Slap Hit Power", "0x807b733c", 0.5, "float", 0, 1, 0.01],
+  ["Box Movement Speed Modifier", "0x807b7340", 1.0, "float", 0, 10, 0.1],
+  ["Box Movement Speed Modifier when Centering (R Press)", "0x807b7344", 3.0, "float", 0, 10, 0.1],
+  ["Moonshot (5 Star) Power Multiplier", "0x807b7348", 1.5, "float", 0, 10, 0.01],
+  ["Frame Fully Overcharged", "0x807b734c", 180, "short", 0, 500, 1],
+  ["Frames Holding A Until Charge Hit Enabled", "0x807b734e", 12, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Regular", "0x807b7366", 1, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Captain Star", "0x807b7368", 50, "short", 0, 500, 1],
+  ["Frames Paused On Contact - Moonshot (5 Star)", "0x807b736a", 50, "short", 0, 500, 1],
+  ["Air Resistance", "0x807b5c00", 40, "byte", 0, 255, 1],
+  ["Gravity", "0x807b5bfc", 0.00275, "float", 0, 1, 0.00001],
+  ["% of Final Hit Power that is Fixed (Not Related to Variable Contact Quality and Unadjusted Power)", "0x807b70f0", 0.8, "float", 0, 1, 0.01],
+  ["Global Power Adjustment", "0x807adb20", 0.5, "float", 0, 4, 0.01],
+  ["Chemistry Power Boost 1", "0x807b5c20", 1.05, "float", 0, 5, 0.01],
+  ["Chemistry Power Boost 2", "0x807b5c24", 1.1, "float", 0, 5, 0.01],
+  ["Chemistry Power Boost 3", "0x807b5c28", 1.2, "float", 0, 5, 0.01],
+  ["Maximum Team Stars", "0x807b76f4", 5, "byte", 0, 255, 1],
+  ["Stars Spent for Captain Star Swing as Captain", "0x807b76f5", 1, "byte", 0, 255, 1],
+  ["Stars Spent for Captain Star Swing When Not Captain", "0x807b76f6", 1, "byte", 0, 255, 1],
+  ["Stars Spent for Non-Captain Star Swing", "0x807b76f7", 1, "byte", 0, 255, 1],
+  //["Captain Star Hit Bat Contact Size", "0x807adb24", 100, "float", 0, 500, 1], actually impacts lots of things so I don't think this should be modded
+  ["Fire Star Hit: Stun Frames", "0x807b7354", 90, "short", 0, 500, 1],
+  ["(Maybe) Peach Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
+  ["(Maybe) Daisy Star Hit: Frames Before Landing When Ball is Visible Again", "0x807b735e", 1, "short", 0, 200, 1],
+  ["Banana Star Hit: Direction Change Each Frame (Radians)", "0x807b7320", 0.008, "float", 0, 1, 0.001],
+  ["Banana Star Hit: % of Hangtime When Curve Starts", "0x807b7324", 0.25, "float", 0, 1, 0.01],
+  ["Banana Star Hit: % of Hangtime When Curve Ends", "0x807b7328", 0.95, "float", 0, 1, 0.01],
+  ["Garlic/Eggplant Star Hit: Frames Before Ground When Ball Splits", "0x807b735c", 120, "short", 0, 500, 1],
+  ["Garlic/Eggplant Star Hit: Spread Angle (Radians) RNG Lowerbound", "0x807b7334", 0.2, "float", 0, 1, 0.01],
+  ["Garlic/Eggplant Star Hit: Spread Angle (Radians) RNG Upperbound", "0x807b7338", 0.3, "float", 0, 1, 0.01],
+  ["Bullet Star Hit: Pushback Factor", "0x807b7330", 4, "float", 0, 50, 0.01],
+  ["Egg Star Hit: Velocity % Maintained After Each Bounce", "0x807b732c", 0.8, "float", 0, 1, 0.01],
+  ["Egg Star Hit: Number of Bounces", "0x807b7358", 2, "short", 0, 20, 1],
+
+]
+
+export const battingMiscRead = readable(battingMisc)
+export const battingMiscWrite = writable(structuredClone(battingMisc))
+
+//hit power, angles, contact sizes. For contact, use this fn 80650f64. H angle: 80650c30. v angle 806504fc
+//["Captain Star Hit Bat Contact Size", "0x807adb24", 100, "float", 0, 500, 1],
+//stadium bounce physics
+
+// vertical probabilities: char traj, hit type, easy batting, 5 probabilities 300
+// vertical ranges: hit type, contact type, 5 probabilities, upper and lower 100
+
+
+// vertical ranges stars: 15 star swings (3 non captain, 12 captain), 5 contact types, 2 upper and lower (150 total)
+export const battingLaunchAnglesStar = [
+  [[59, 61], [59, 61], [59, 61], [59, 61], [59, 61]], //captains stars
+  [[65435, 65437], [65435, 65437], [65435, 65437], [65435, 65437], [65435, 65437]], 
+  [[350, 400], [350, 400], [350, 400], [350, 400], [350, 400]], 
+  [[450, 500], [450, 500], [450, 500], [450, 500], [450, 500]], 
+  [[120, 160], [160, 200], [160, 200], [160, 200], [120, 160]], 
+  [[250, 300], [250, 300], [250, 300], [250, 300], [250, 300]], 
+  [[64, 80], [64, 80], [64, 80], [64, 80], [64, 80]], 
+  [[64, 80], [64, 80], [64, 80], [64, 80], [64, 80]], 
+  [[350, 400], [350, 400], [350, 400], [350, 400], [350, 400]], 
+  [[200, 250], [200, 250], [200, 250], [200, 250], [200, 250]], 
+  [[350, 600], [350, 600], [350, 600], [350, 600], [350, 600]], 
+  [[350, 600], [350, 600], [350, 600], [350, 600], [350, 600]],
+  [[250, 300], [300, 350], [350, 400], [400, 450], [450, 500]], //pop
+  [[50, 100], [50, 100], [50, 100], [50, 100], [50, 100]], //grounder
+  [[120, 160], [160, 200], [160, 200], [160, 200], [120, 160]] //linedrive
+]
+
+export const battingLaunchAnglesStarRead = readable(battingLaunchAnglesStar)
+export const battingLaunchAnglesStarWrite = writable(structuredClone(battingLaunchAnglesStar))
+
+export const battingLaunchAnglesRegular = [
+  [[[65486, 50], [50, 100], [100, 300], [300, 400], [400, 500]], [[50, 150], [150, 200], [200, 250], [250, 300], [300, 350]], [[50, 150], [150, 200], [150, 200], [200, 300], [300, 350]], [[50, 150], [150, 200], [200, 250], [250, 300], [300, 350]], [[65486, 50], [50, 100], [100, 300], [300, 400], [400, 500]]], 
+  [[[400, 450], [450, 500], [500, 550], [550, 600], [550, 600]], [[50, 100], [100, 150], [300, 400], [350, 450], [400, 500]], [[100, 200], [350, 400], [450, 500], [500, 550], [530, 580]], [[50, 100], [100, 150], [300, 400], [350, 450], [400, 500]], [[400, 450], [450, 500], [500, 550], [550, 600], [550, 600]]]
+]
+
+export const battingLaunchAnglesRegularRead = readable(battingLaunchAnglesRegular)
+export const battingLaunchAnglesRegularWrite = writable(structuredClone(battingLaunchAnglesRegular))
+
+export const battingLaunchAngleProbabilities = [
+  [[[[0, 10, 20, 30, 40], [20, 20, 20, 20, 20], [10, 25, 30, 25, 10], [20, 20, 20, 20, 20], [40, 30, 20, 10, 0]], [[0, 10, 20, 30, 40], [20, 20, 20, 20, 20], [10, 25, 30, 25, 10], [20, 20, 20, 20, 20], [40, 30, 20, 10, 0]]], [[[10, 0, 20, 30, 40], [20, 22, 22, 28, 8], [20, 25, 25, 25, 5], [20, 22, 22, 28, 8], [10, 0, 20, 30, 40]], [[10, 0, 20, 30, 40], [20, 22, 22, 28, 8], [20, 25, 25, 25, 5], [20, 22, 22, 28, 8], [10, 0, 20, 30, 40]]]], 
+  [[[[0, 10, 20, 30, 40], [5, 5, 15, 40, 35], [5, 5, 20, 40, 35], [5, 5, 15, 40, 35], [40, 30, 20, 10, 0]], [[0, 10, 20, 30, 40], [5, 5, 15, 40, 35], [5, 5, 20, 40, 35], [5, 5, 15, 40, 35], [40, 30, 20, 10, 0]]], [[[5, 0, 10, 40, 45], [5, 21, 12, 29, 33], [5, 23, 15, 27, 30], [5, 21, 12, 29, 33], [5, 0, 10, 40, 45]], [[5, 0, 10, 40, 45], [5, 21, 12, 29, 33], [5, 23, 15, 27, 30], [5, 21, 12, 29, 33], [5, 0, 10, 40, 45]]]], 
+  [[[[10, 20, 20, 20, 30], [35, 40, 15, 5, 5], [30, 40, 20, 5, 5], [35, 40, 15, 5, 5], [40, 30, 20, 5, 5]], [[10, 20, 20, 20, 30], [35, 40, 15, 5, 5], [30, 40, 20, 5, 5], [35, 40, 15, 5, 5], [40, 30, 20, 5, 5]]], [[[10, 0, 20, 30, 40], [35, 30, 22, 10, 3], [30, 30, 25, 15, 0], [35, 30, 22, 10, 3], [10, 0, 20, 30, 40]], [[10, 0, 20, 30, 40], [35, 30, 22, 10, 3], [30, 30, 25, 15, 0], [35, 30, 22, 10, 3], [10, 0, 20, 30, 40]]]]
+]
+
+export const battingLaunchAnglesProbabilitiesRead = readable(battingLaunchAngleProbabilities)
+export const battingLaunchAnglesProbabilitiesWrite = writable(structuredClone(battingLaunchAngleProbabilities))
+
+export const battingHorizontalAngles = [
+  [
+    [[0, 0], [0, 0], [64836, 65036], [65036, 65186], [65136, 65286], [65186, 65436], [65386, 250], [200, 300], [250, 400], [350, 550], [550, 700], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64936, 65136], [65136, 65336], [65236, 65436], [65336, 200], [100, 400], [300, 450], [350, 600], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ], 
+  [
+    [[0, 0], [0, 0], [64786, 65036], [65036, 65236], [65236, 65386], [65386, 200], [200, 400], [300, 450], [400, 600], [500, 600], [600, 700], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64936, 65136], [65136, 65336], [65236, 100], [100, 400], [100, 400], [200, 500], [500, 700], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ], 
+  [
+    [[0, 0], [0, 0], [64836, 64936], [64936, 65136], [65086, 65186], [65136, 65236], [65186, 65336], [65336, 150], [150, 300], [300, 700], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]], 
+    [[0, 0], [0, 0], [0, 0], [64986, 65236], [65136, 65336], [65236, 65436], [65236, 65436], [65436, 200], [200, 450], [450, 650], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+  ]
+] 
+
+export const battingHorizontalAnglesRead = readable(battingHorizontalAngles)
+export const battingHorizontalAnglesWrite = writable(structuredClone(battingHorizontalAngles))
+
+export const battingExitVelocity = [
+  [[100, 130, 65426], [140, 145, 65436], [145, 150, 65426], [140, 145, 65436], [100, 130, 65426]], 
+  [[140, 150, 65416], [162, 177, 65376], [160, 170, 0], [162, 177, 65376], [140, 150, 65416]]
+]
+
+export const battingExitVelocityRead = readable(battingExitVelocity)
+export const battingExitVelocityWrite = writable(structuredClone(battingExitVelocity))
+
+export const battingHorizontalTrajMultiplier = [
+  [1, 1, 1, 1, 1],
+  [0.85, 0.95, 1, 1.05, 1.02],
+  [1.02, 1.05, 1, 0.95, 0.85]
+]
+
+export const battingHorizontalTrajMultiplierRead = readable(battingHorizontalTrajMultiplier)
+export const battingHorizontalTrajMultiplierWrite = writable(structuredClone(battingHorizontalTrajMultiplier))
+
+export const battingCurveEffects = [
+  [0.5, 0.001, 0.003],
+  [0.25, 0.006, 0.008]
+]
+
+export const battingCurveEffectsRead = readable(battingCurveEffects)
+export const battingCurveEffectsWrite = writable(structuredClone(battingCurveEffects))
+
+// To add: hittable frame indicators
+
+export const characterHitboxes = [
+  ["Char Name","Starting Addr","Air or Hard Grounder Radius","Slow Grounder Radius","Air or Hard Grounder Centered Radius","Height","Reaching Up or Down Animation Related","Unknown","Dive Range","Hight for Infield Dives"],
+  [null,null,"0x0","0x2","0x4","0x6","0x8","0xa","0xc","0xe"],
+  ['Mario', '0x807b8fb4', 117, 80, 75, 185, 80, 335, 140, 100], 
+  ['Luigi', '0x807b8fc4', 120, 80, 75, 185, 80, 350, 140, 100], 
+  ['DK', '0x807b8fd4', 250, 80, 100, 250, 95, 580, 300, 250], 
+  ['Diddy', '0x807b8fe4', 140, 80, 50, 150, 75, 410, 170, 100], 
+  ['Peach', '0x807b8ff4', 77, 80, 50, 242, 161, 572, 140, 100], 
+  ['Daisy', '0x807b9004', 77, 80, 50, 242, 161, 572, 140, 100], 
+  ['Yoshi', '0x807b9014', 120, 80, 50, 185, 80, 350, 450, 100], 
+  ['Baby Mario', '0x807b9024', 72, 80, 50, 130, 50, 297, 110, 100], 
+  ['Baby Luigi', '0x807b9034', 72, 80, 50, 130, 50, 297, 110, 100], 
+  ['Bowser', '0x807b9044', 196, 80, 100, 269, 180, 633, 230, 220], 
+  ['Wario', '0x807b9054', 140, 80, 75, 200, 100, 420, 200, 80], 
+  ['Waluigi', '0x807b9064', 230, 80, 100, 320, 180, 780, 200, 150], 
+  ['Koopa(R)', '0x807b9074', 84, 80, 50, 155, 75, 270, 120, 130], 
+  ['Toad(R)', '0x807b9084', 70, 80, 50, 130, 42, 228, 90, 50], 
+  ['Boo', '0x807b9094', 120, 80, 50, 185, 80, 350, 100, 100], 
+  ['Toadette', '0x807b90a4', 120, 80, 50, 185, 80, 350, 80, 70], 
+  ['Shy Guy(R)', '0x807b90b4', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Birdo', '0x807b90c4', 120, 80, 50, 185, 80, 350, 350, 100], 
+  ['Monty', '0x807b90d4', 120, 80, 50, 185, 80, 350, 100, 120], 
+  ['Bowser Jr', '0x807b90e4', 120, 80, 75, 185, 80, 350, 150, 100], 
+  ['Paratroopa(R)', '0x807b90f4', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Pianta(B)', '0x807b9104', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Pianta(R)', '0x807b9114', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Pianta(Y)', '0x807b9124', 120, 80, 100, 185, 80, 350, 220, 80], 
+  ['Noki(B)', '0x807b9134', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Noki(R)', '0x807b9144', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Noki(G)', '0x807b9154', 120, 80, 50, 185, 80, 350, 130, 80], 
+  ['Bro(H)', '0x807b9164', 120, 80, 50, 185, 80, 350, 150, 100], 
+  ['Toadsworth', '0x807b9174', 120, 80, 50, 185, 80, 350, 80, 40], 
+  ['Toad(B)', '0x807b9184', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(Y)', '0x807b9194', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(G)', '0x807b91a4', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Toad(P)', '0x807b91b4', 120, 80, 50, 185, 80, 350, 90, 50], 
+  ['Magikoopa(B)', '0x807b91c4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(R)', '0x807b91d4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(G)', '0x807b91e4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['Magikoopa(Y)', '0x807b91f4', 120, 80, 75, 300, 80, 400, 230, 30], 
+  ['King Boo', '0x807b9204', 120, 80, 50, 185, 80, 350, 100, 100], 
+  ['Petey', '0x807b9214', 120, 80, 100, 185, 80, 350, 230, 150], 
+  ['Dixie', '0x807b9224', 120, 80, 50, 185, 80, 350, 140, 100], 
+  ['Goomba', '0x807b9234', 120, 80, 50, 185, 80, 350, 110, 100], 
+  ['Paragoomba', '0x807b9244', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Koopa(G)', '0x807b9254', 120, 80, 50, 185, 80, 350, 120, 130], 
+  ['Paratroopa(G)', '0x807b9264', 120, 80, 50, 185, 80, 350, 120, 90], 
+  ['Shy Guy(B)', '0x807b9274', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(Y)', '0x807b9284', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(G)', '0x807b9294', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Shy Guy(Bk)', '0x807b92a4', 120, 80, 50, 185, 80, 350, 90, 100], 
+  ['Dry Bones(Gy)', '0x807b92b4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(G)', '0x807b92c4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(R)', '0x807b92d4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Dry Bones(B)', '0x807b92e4', 120, 80, 50, 185, 80, 350, 120, 100], 
+  ['Bro(F)', '0x807b92f4', 120, 80, 50, 185, 80, 350, 150, 100], 
+  ['Bro(B)', '0x807b9304', 120, 80, 50, 185, 80, 350, 150, 100]
+]
+
+export const characterHitboxesRead = readable(characterHitboxes)
+export const characterHitboxesWrite = writable(structuredClone(characterHitboxes))
+
+export const hitboxMisc = [
+  ["Constant Name", "Addr", "Usual Value", "Type", "Min", "Max", "Increment"],
+  ["Global Hitbox Scaler", "0x807ae638", 0.01, "float", 0, 2, 0.01],
+  ["Air or Hard Grounder Radius Minimum", "0x807b9314", 70, "short", 0, 65536, 1],
+  ["Height Minimum", "0x807b9316", 80, "short", 0, 65536, 1],
+  ["Dive Range Minimum", "0x807b931c", 0, "short", 0, 65536, 1],
+  ["Infield Dive Height Minimum", "0x807b931e", 250, "short", 0, 65536, 1],
+  ['Mario Hitbox Scaler', '0x800e8300', 1.2, 'float', 0, 10, 0.01], ['Luigi Hitbox Scaler', '0x800e8308', 1.2, 'float', 0, 10, 0.01], ['DK Hitbox Scaler', '0x800e8310', 1.2, 'float', 0, 10, 0.01], ['Diddy Hitbox Scaler', '0x800e8318', 1.2, 'float', 0, 10, 0.01], ['Peach Hitbox Scaler', '0x800e8320', 1.2, 'float', 0, 10, 0.01], 
+  ['Daisy Hitbox Scaler', '0x800e8328', 1.2, 'float', 0, 10, 0.01], ['Yoshi Hitbox Scaler', '0x800e8330', 1.2, 'float', 0, 10, 0.01], ['Baby Mario Hitbox Scaler', '0x800e8338', 1.2, 'float', 0, 10, 0.01], ['Baby Luigi Hitbox Scaler', '0x800e8340', 1.2, 'float', 0, 10, 0.01], ['Bowser Hitbox Scaler', '0x800e8348', 1.2, 'float', 0, 10, 0.01], 
+  ['Wario Hitbox Scaler', '0x800e8350', 1.2, 'float', 0, 10, 0.01], ['Waluigi Hitbox Scaler', '0x800e8358', 1.2, 'float', 0, 10, 0.01], ['Koopa(R) Hitbox Scaler', '0x800e8360', 1.2, 'float', 0, 10, 0.01], ['Toad(R) Hitbox Scaler', '0x800e8368', 1.2, 'float', 0, 10, 0.01], ['Boo Hitbox Scaler', '0x800e8370', 1.2, 'float', 0, 10, 0.01], 
+  ['Toadette Hitbox Scaler', '0x800e8378', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(R) Hitbox Scaler', '0x800e8380', 1.2, 'float', 0, 10, 0.01], ['Birdo Hitbox Scaler', '0x800e8388', 1.2, 'float', 0, 10, 0.01], ['Monty Hitbox Scaler', '0x800e8390', 1.2, 'float', 0, 10, 0.01], ['Bowser Jr Hitbox Scaler', '0x800e8398', 1.2, 'float', 0, 10, 0.01], 
+  ['Paratroopa(R) Hitbox Scaler', '0x800e83a0', 1.2, 'float', 0, 10, 0.01], ['Pianta(B) Hitbox Scaler', '0x800e83a8', 1.2, 'float', 0, 10, 0.01], ['Pianta(R) Hitbox Scaler', '0x800e83b0', 1.2, 'float', 0, 10, 0.01], ['Pianta(Y) Hitbox Scaler', '0x800e83b8', 1.2, 'float', 0, 10, 0.01], ['Noki(B) Hitbox Scaler', '0x800e83c0', 1.2, 'float', 0, 10, 0.01], 
+  ['Noki(R) Hitbox Scaler', '0x800e83c8', 1.2, 'float', 0, 10, 0.01], ['Noki(G) Hitbox Scaler', '0x800e83d0', 1.2, 'float', 0, 10, 0.01], ['Bro(H) Hitbox Scaler', '0x800e83d8', 1.2, 'float', 0, 10, 0.01], ['Toadsworth Hitbox Scaler', '0x800e83e0', 1.2, 'float', 0, 10, 0.01], ['Toad(B) Hitbox Scaler', '0x800e83e8', 1.2, 'float', 0, 10, 0.01], 
+  ['Toad(Y) Hitbox Scaler', '0x800e83f0', 1.2, 'float', 0, 10, 0.01], ['Toad(G) Hitbox Scaler', '0x800e83f8', 1.2, 'float', 0, 10, 0.01], ['Toad(P) Hitbox Scaler', '0x800e8400', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(B) Hitbox Scaler', '0x800e8408', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(R) Hitbox Scaler', '0x800e8410', 1.2, 'float', 0, 10, 0.01], 
+  ['Magikoopa(G) Hitbox Scaler', '0x800e8418', 1.2, 'float', 0, 10, 0.01], ['Magikoopa(Y) Hitbox Scaler', '0x800e8420', 1.2, 'float', 0, 10, 0.01], ['King Boo Hitbox Scaler', '0x800e8428', 1.2, 'float', 0, 10, 0.01], ['Petey Hitbox Scaler', '0x800e8430', 1.2, 'float', 0, 10, 0.01], ['Dixie Hitbox Scaler', '0x800e8438', 1.2, 'float', 0, 10, 0.01], 
+  ['Goomba Hitbox Scaler', '0x800e8440', 1.2, 'float', 0, 10, 0.01], ['Paragoomba Hitbox Scaler', '0x800e8448', 1.2, 'float', 0, 10, 0.01], ['Koopa(G) Hitbox Scaler', '0x800e8450', 1.2, 'float', 0, 10, 0.01], ['Paratroopa(G) Hitbox Scaler', '0x800e8458', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(B) Hitbox Scaler', '0x800e8460', 1.2, 'float', 0, 10, 0.01], 
+  ['Shy Guy(Y) Hitbox Scaler', '0x800e8468', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(G) Hitbox Scaler', '0x800e8470', 1.2, 'float', 0, 10, 0.01], ['Shy Guy(Bk) Hitbox Scaler', '0x800e8478', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(Gy) Hitbox Scaler', '0x800e8480', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(G) Hitbox Scaler', '0x800e8488', 1.2, 'float', 0, 10, 0.01], 
+  ['Dry Bones(R) Hitbox Scaler', '0x800e8490', 1.2, 'float', 0, 10, 0.01], ['Dry Bones(B) Hitbox Scaler', '0x800e8498', 1.2, 'float', 0, 10, 0.01], ['Bro(F) Hitbox Scaler', '0x800e84a0', 1.2, 'float', 0, 10, 0.01], ['Bro(B) Hitbox Scaler', '0x800e84a8', 1.2, 'float', 0, 10, 0.01]
+]
+
+export const hitboxMiscRead = readable(hitboxMisc)
+export const hitboxMiscWrite = writable(structuredClone(hitboxMisc))
+
+export const pitchingMisc = [
+  ["Constant Name", "Addr", "Usual Value", "Type", "Min", "Max", "Increment"],
+  ["Pitcher Movement Speed on Mound", "0x807b5a7c", 0.08, "float", 0, 1, 0.01],
+  ["Pitch Speed Scaler", "0x807b7590", 240, "float", 0, 1000, 1],
+  ["Air Resistance Factor", "0x807b7594", 0.998, "float", 0, 5, 0.001],
+  ["Charge Windup Duration", "0x807b9682", 100, "short", 0, 255, 1],
+  ["Curve Windup Duration", "0x807b9684", 60, "short", 0, 255, 1],
+  ["Perfect Pitch Frame Window (measured in frames until pitch is released)", "0x807b7540", 15, "short", 0, 255, 1],
+  ["Perfect Pitch Speed Scaler", "0x807b7530", 1.05, "float", 0, 3, 0.01],
+  ["Slider Speed: Proportion of Speed Between Fastball and Curve Speed Stats", "0x807b752c", 0.85, "float", 0, 3, 0.01],
+  ["Cursed Ball Modifier: charge, changeup, fastball star, or changeup star", "0x807b7528", 1.0, "float", 0, 5, 0.01],
+  ["Curve Control Modifier: charge, changeup, fastball star, or changeup star", "0x807b751c", 1.0, "float", 0, 5, 0.01],
+  ["Curve Modifier: charge, changeup, fastball star, or changeup star", "0x807b751c", 0.02, "float", 0, 5, 0.01],
+  ["Tired Pitcher Curve Reduction Factor (only on curve pitches)", "0x807b74e6", 99, "short", 0, 100, 1],
+  ["Tired Pitcher Speed Reduction Factor (only on charge pitches)", "0x807b74e8", 20, "short", 0, 100, 1],
+  ["Tired Pitcher Curve Control Reduction Factor", "0x807b74ea", 100, "short", 0, 100, 1],
+  ["Tired Pitcher Cursed Ball Reduction Factor", "0x807b74ec", 100, "short", 0, 100, 1],
+  ["Strikezone Left Side", "0x807b7498", -0.53, "float", -3, 3, 0.01],
+  ["Strikezone Right Side", "0x807b749c", 0.53, "float", -3, 3, 0.01],
+  ["Strikezone Front (when game starts checking for strikes)", "0x807b74a0", 1.05, "float", -1, 10, 0.01],
+  ["Strikezone Back (when game stops checking for strikes)", "0x807b74a0", 0.5, "float", -1, 10, 0.01],
+  ["Pitch Peak Height?", "0x807b74a8", 0.7, "float", 0, 10, 0.1],
+  ["Tired Stamina Threshold", "0x807b74e2", 4, "short", 0, 10, 1],
+  ["Stars Spent: Captain Star with Captain Character", "0x807b76f5", 1, "byte", 0, 5, 1],
+  ["Stars Spent: Captain Star with Non-Captain Character", "0x807b76f6", 2, "byte", 0, 5, 1],
+  ["Stars Spent: Non-Captain Star", "0x807b76f7", 1, "byte", 0, 5, 1],
+  ["Stars Spent: Captain Star with Captain Character", "0x807b76f7", 1, "byte", 0, 5, 1],
+  ["Egg Star Pitch: Bounce Height", "0x807b755c", 0.35, "float", 0, 5, 0.01],
+  ["Egg Star Pitch: First Bounce Distance Lowerbound", "0x807b7560", 7, "float", 0, 18.5, 0.1],
+  ["Egg Star Pitch: First Bounce Distance Upperbound", "0x807b7564", 9, "float", 0, 18.5, 0.1],
+  ["Egg Star Pitch: First Bounce Side to Side Range", "0x807b7568", 1, "float", 0, 10, 0.1],
+  ["Egg Star Pitch: Second Bounce Distance Lowerbound", "0x807b756c", 3, "float", 0, 18.5, 0.1],
+  ["Egg Star Pitch: Second Bounce Distance Upperbound", "0x807b7570", 5, "float", 0, 18.5, 0.1],
+  ["Egg Star Pitch: Second Bounce Side to Side Range", "0x807b7574", 1, "float", 0, 10, 0.1],
+  ["Egg Star Pitch: Ending Side to Side Range", "0x807b7578", 0.3, "float", 0, 10, 0.1],
+  ["Egg Star Pitch: Initial Speed Lowerbound", "0x807b757c", 80, "short", 0, 65535, 1],
+  ["Egg Star Pitch: Initial Speed Uowerbound", "0x807b758e", 80, "short", 0, 65535, 1],
+  ["Egg Star Pitch: Parabolic Constant Lowerbound", "0x807b7580", 55, "short", 0, 65535, 1],
+  ["Egg Star Pitch: Parabolic Constant Upperbound", "0x807b7582", 60, "short", 0, 65535, 1],
+  ["Bowser Star Pitch: Loop Duration Lowerbound", "0x807b7550", 20, "byte", 0, 255, 1],
+  ["Bowser Star Pitch: Loop Duration Upperbound", "0x807b7551", 35, "byte", 0, 255, 1],
+  ["Bowser Star Pitch: Loop Starting Frame Lowerbound", "0x807b7552", 40, "byte", 0, 255, 1],
+  ["Bowser Star Pitch: Loop Starting Frame Upperbound", "0x807b7553", 55, "byte", 0, 255, 1],
+  ["Bowser Jr. Star Pitch: Loop Duration Lowerbound", "0x807b7554", 25, "byte", 0, 255, 1],
+  ["Bowser Jr. Star Pitch: Loop Duration Upperbound", "0x807b7555", 38, "byte", 0, 255, 1],
+  ["Bowser Jr. Star Pitch: Loop Starting Frame Lowerbound", "0x807b7556", 30, "byte", 0, 255, 1],
+  ["Bowser Jr. Star Pitch: Loop Starting Frame Upperbound", "0x807b7557", 55, "byte", 0, 255, 1],
+  ["Peach Star Pitch: % of Flight When Ball Disapppears", "0x807b75b0", 0, "float", 0, 1, 0.01],
+  ["Daisy Star Pitch: % of Flight When Ball Disapppears", "0x807b75b4", 0, "float", 0, 1, 0.01],
+  ["Peach Star Pitch: % of Flight When Ball Reapppears", "0x807b75b8", 0.99, "float", 0, 1, 0.01],
+  ["Daisy Star Pitch: % of Flight When Ball Reapppears", "0x807b75bc", 0.99, "float", 0, 1, 0.01],
+]
+
+export const pitchingMiscRead = readable(pitchingMisc)
+export const pitchingMiscWrite = writable(structuredClone(pitchingMisc))
+
