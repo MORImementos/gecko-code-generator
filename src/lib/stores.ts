@@ -386,7 +386,7 @@ export const battingCurveEffectsWrite = writable(structuredClone(battingCurveEff
 // To add: hittable frame indicators
 
 export const characterHitboxes = [
-  ["Char Name","Starting Addr","Air or Hard Grounder Radius","Slow Grounder Radius","Air or Hard Grounder Centered Radius","Height","Reaching Up or Down Animation Related","Unknown","Dive Range","Hight for Infield Dives"],
+  ["Char Name","Starting Addr","Air or Hard Grounder Radius","Slow Grounder Radius","Air or Hard Grounder Centered Radius","Height","Reaching Up or Down Animation Related","Unknown","Dive Range","Height for Infield Dives"],
   [null,null,"0x0","0x2","0x4","0x6","0x8","0xa","0xc","0xe"],
   ['Mario', '0x807b8fb4', 117, 80, 75, 185, 80, 335, 140, 100], 
   ['Luigi', '0x807b8fc4', 120, 80, 75, 185, 80, 350, 140, 100], 
