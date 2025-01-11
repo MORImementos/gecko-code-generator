@@ -11,6 +11,7 @@
 	<nav>
 		<button class="btn"><a href="{base}/fielding/characters">Character Hitboxes</a></button>	
 		<button class="btn"><a href="{base}/fielding/hitboxMisc">Minimums and Scalers</a></button>	
+		<button class="btn"><a href="{base}/fielding/bobbleChances">Bobble Chances</a></button>	
 	</nav>
 </div>
 <slot />

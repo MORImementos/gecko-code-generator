@@ -526,3 +526,21 @@ export const pitchingMisc = [
 export const pitchingMiscRead = readable(pitchingMisc)
 export const pitchingMiscWrite = writable(structuredClone(pitchingMisc))
 
+export const bobbleChances = [
+  [
+    [[2, 2, 10], [3, 7, 10]], 
+    [[3, 6, 10], [4, 11, 10]], 
+    [[3, 4, 10], [4, 15, 10]], 
+    [[1, 1, 10], [1, 5, 10]]
+  ], 
+  [
+    [[20, 40, 50], [30, 40, 50]], 
+    [[30, 50, 60], [50, 70, 70]], 
+    [[40, 60, 70], [60, 80, 80]], 
+    [[10, 20, 30], [10, 30, 40]]
+  ]
+]
+
+
+export const bobbleChancesRead = readable(bobbleChances)
+export const bobbleChancesWrite = writable(structuredClone(bobbleChances))
