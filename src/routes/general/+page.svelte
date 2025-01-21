@@ -44,7 +44,7 @@
       }
     
     function generateCode(add, code, rIndex, cIndex) {
-        let generatedCode = `${add} 000000${code}`;
+        let generatedCode = `${add} ${code}`;
       joinedCodes = "";
     
         if (Number(codeArray[rIndex][cIndex]) === $generalRead[rIndex][cIndex]) {
